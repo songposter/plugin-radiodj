@@ -15,6 +15,14 @@ namespace Plugin_SongPoster
 
         private WebRequester Requester;
 
+        private int counter;
+
+        private DateTime startTimer;
+
+        public int Interval;
+
+        public string Timing;
+
         public string CustomData;
 
         public string[] Networks;
@@ -130,6 +138,8 @@ namespace Plugin_SongPoster
             MyEvents.Add(item);
             item = new Events.EventAction(PluginName, "Set Custom Title", PluginActionTypes.Other, "Add new title as argument. Don't use semicolon!");
             MyEvents.Add(item);
+            counter = 0;
+            startTimer = DateTime.Now;
             return MyEvents;
         }
 
@@ -146,6 +156,8 @@ namespace Plugin_SongPoster
             Password = MyHost.GetSetting(PluginFileName, "Password", "");
             Enabled = (MyHost.GetSetting(PluginFileName, "Enabled", "false") == "true");
             CustomData = MyHost.GetSetting(PluginFileName, "CustomData", "$artist$ - $title$");
+            Interval = Int32.Parse(MyHost.GetSetting(PluginFileName, "Interval", "0"));
+            Timing = MyHost.GetSetting(PluginFileName, "Timing", "WaitForPlayCount");
         }
 
         public void Initialize(IHost Host)
@@ -220,7 +232,20 @@ namespace Plugin_SongPoster
         public void TrackChanged(TrackPlayer Player)
         {
             if (Enabled)
-                Requester.sendRequest(Player.TrackData, CustomData, Networks, UserId, Password);
+            {
+                counter++;
+                int compareTimes = DateTime.Compare(DateTime.Now, startTimer.AddMinutes(Interval));
+                if (Timing == "WaitForPlayCount" && counter > Interval)
+                {
+                    Requester.sendRequest(Player.TrackData, CustomData, Networks, UserId, Password);
+                    counter = 0;
+                }
+                else if (Timing == "WaitForTime" && compareTimes >= 0)
+                {
+                    Requester.sendRequest(Player.TrackData, CustomData, Networks, UserId, Password);
+                    startTimer = DateTime.Now;
+                }
+            }
         }
     }
 }

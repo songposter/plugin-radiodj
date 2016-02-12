@@ -58,6 +58,11 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.openFileDialogPAL = new System.Windows.Forms.OpenFileDialog();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.labelInterval = new System.Windows.Forms.Label();
+            this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
+            this.panelWaitFor = new System.Windows.Forms.Panel();
+            this.radioButtonWaitForPlayCount = new System.Windows.Forms.RadioButton();
+            this.radioButtonWaitForTime = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGeneral.SuspendLayout();
@@ -65,6 +70,8 @@
             this.groupBoxWebExport.SuspendLayout();
             this.tabWebExportPAL.SuspendLayout();
             this.groupBoxExportWebPAL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
+            this.panelWaitFor.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -94,6 +101,9 @@
             // 
             // groupBoxGeneral
             // 
+            this.groupBoxGeneral.Controls.Add(this.panelWaitFor);
+            this.groupBoxGeneral.Controls.Add(this.numericUpDownInterval);
+            this.groupBoxGeneral.Controls.Add(this.labelInterval);
             this.groupBoxGeneral.Controls.Add(this.textBoxPassword);
             this.groupBoxGeneral.Controls.Add(this.labelPassword);
             this.groupBoxGeneral.Controls.Add(this.textBoxUserId);
@@ -211,9 +221,9 @@
             this.checkBoxEnable.AutoSize = true;
             this.checkBoxEnable.Location = new System.Drawing.Point(6, 92);
             this.checkBoxEnable.Name = "checkBoxEnable";
-            this.checkBoxEnable.Size = new System.Drawing.Size(59, 17);
+            this.checkBoxEnable.Size = new System.Drawing.Size(115, 17);
             this.checkBoxEnable.TabIndex = 6;
-            this.checkBoxEnable.Text = "Enable";
+            this.checkBoxEnable.Text = "Use manual Config";
             this.checkBoxEnable.UseVisualStyleBackColor = true;
             this.checkBoxEnable.Click += new System.EventHandler(this.checkBox_Click);
             // 
@@ -316,9 +326,9 @@
             this.checkBoxUsePAL.AutoSize = true;
             this.checkBoxUsePAL.Location = new System.Drawing.Point(6, 313);
             this.checkBoxUsePAL.Name = "checkBoxUsePAL";
-            this.checkBoxUsePAL.Size = new System.Drawing.Size(59, 17);
+            this.checkBoxUsePAL.Size = new System.Drawing.Size(158, 17);
             this.checkBoxUsePAL.TabIndex = 11;
-            this.checkBoxUsePAL.Text = "Enable";
+            this.checkBoxUsePAL.Text = "Use automatic configuration";
             this.checkBoxUsePAL.UseVisualStyleBackColor = true;
             this.checkBoxUsePAL.Click += new System.EventHandler(this.checkBox_Click);
             // 
@@ -332,9 +342,9 @@
             "$artist$"});
             this.textBoxResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBoxResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxResult.Location = new System.Drawing.Point(49, 287);
+            this.textBoxResult.Location = new System.Drawing.Point(62, 287);
             this.textBoxResult.Name = "textBoxResult";
-            this.textBoxResult.Size = new System.Drawing.Size(490, 20);
+            this.textBoxResult.Size = new System.Drawing.Size(477, 20);
             this.textBoxResult.TabIndex = 8;
             // 
             // labelResult
@@ -342,9 +352,9 @@
             this.labelResult.AutoSize = true;
             this.labelResult.Location = new System.Drawing.Point(6, 290);
             this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(37, 13);
+            this.labelResult.Size = new System.Drawing.Size(50, 13);
             this.labelResult.TabIndex = 7;
-            this.labelResult.Text = "Result";
+            this.labelResult.Text = "Message";
             // 
             // textBoxPAL
             // 
@@ -404,6 +414,64 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // labelInterval
+            // 
+            this.labelInterval.AutoSize = true;
+            this.labelInterval.Location = new System.Drawing.Point(6, 151);
+            this.labelInterval.Name = "labelInterval";
+            this.labelInterval.Size = new System.Drawing.Size(42, 13);
+            this.labelInterval.TabIndex = 15;
+            this.labelInterval.Text = "Interval";
+            // 
+            // numericUpDownInterval
+            // 
+            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 149);
+            this.numericUpDownInterval.Maximum = new decimal(new int[] {
+            3600,
+            0,
+            0,
+            0});
+            this.numericUpDownInterval.Name = "numericUpDownInterval";
+            this.numericUpDownInterval.Size = new System.Drawing.Size(457, 20);
+            this.numericUpDownInterval.TabIndex = 16;
+            // 
+            // panelWaitFor
+            // 
+            this.panelWaitFor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelWaitFor.Controls.Add(this.radioButtonWaitForPlayCount);
+            this.panelWaitFor.Controls.Add(this.radioButtonWaitForTime);
+            this.panelWaitFor.Location = new System.Drawing.Point(6, 176);
+            this.panelWaitFor.Name = "panelWaitFor";
+            this.panelWaitFor.Size = new System.Drawing.Size(528, 28);
+            this.panelWaitFor.TabIndex = 17;
+            // 
+            // radioButtonWaitForPlayCount
+            // 
+            this.radioButtonWaitForPlayCount.AutoSize = true;
+            this.radioButtonWaitForPlayCount.Location = new System.Drawing.Point(180, 3);
+            this.radioButtonWaitForPlayCount.Name = "radioButtonWaitForPlayCount";
+            this.radioButtonWaitForPlayCount.Size = new System.Drawing.Size(210, 17);
+            this.radioButtonWaitForPlayCount.TabIndex = 20;
+            this.radioButtonWaitForPlayCount.TabStop = true;
+            this.radioButtonWaitForPlayCount.Text = "By number of songs between two posts";
+            this.radioButtonWaitForPlayCount.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonWaitForTime
+            // 
+            this.radioButtonWaitForTime.AutoSize = true;
+            this.radioButtonWaitForTime.Location = new System.Drawing.Point(6, 3);
+            this.radioButtonWaitForTime.Name = "radioButtonWaitForTime";
+            this.radioButtonWaitForTime.Size = new System.Drawing.Size(168, 17);
+            this.radioButtonWaitForTime.TabIndex = 19;
+            this.radioButtonWaitForTime.TabStop = true;
+            this.radioButtonWaitForTime.Text = "By minutes between two posts";
+            this.radioButtonWaitForTime.UseVisualStyleBackColor = true;
+            // 
             // SongPoster_Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,6 +494,9 @@
             this.tabWebExportPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
+            this.panelWaitFor.ResumeLayout(false);
+            this.panelWaitFor.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -461,6 +532,11 @@
         private System.Windows.Forms.Label labelUserId;
         private System.Windows.Forms.ListBox listBoxNetworks1;
         private System.Windows.Forms.Label labelNetworks1;
+        private System.Windows.Forms.Panel panelWaitFor;
+        private System.Windows.Forms.RadioButton radioButtonWaitForPlayCount;
+        private System.Windows.Forms.RadioButton radioButtonWaitForTime;
+        private System.Windows.Forms.NumericUpDown numericUpDownInterval;
+        private System.Windows.Forms.Label labelInterval;
     }
 }
 

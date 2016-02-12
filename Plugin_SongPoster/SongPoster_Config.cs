@@ -8,10 +8,6 @@ namespace Plugin_SongPoster
     {
         private SongPoster spRef;
 
-        private string message = null;
-        private string prefix = null;
-        private string postfix = null;
-
         public SongPoster_Config(SongPoster sp)
         {
             InitializeComponent();
@@ -26,6 +22,15 @@ namespace Plugin_SongPoster
             textBoxPassword.Text = spRef.Password;
             textBoxResult.Text = spRef.CustomData;
             checkBoxUsePAL.Checked = spRef.Enabled;
+            if (spRef.Timing == "WaitForPlayCount")
+            {
+                radioButtonWaitForPlayCount.Checked = true;
+            }
+            else
+            {
+                radioButtonWaitForTime.Checked = true;
+            }
+            numericUpDownInterval.Value = spRef.Interval;
         }
 
         private void SongPoster_Config_Load(object sender, EventArgs e)
@@ -39,12 +44,21 @@ namespace Plugin_SongPoster
             {
                 string palFileName = openFileDialogPAL.FileName;
 
+                string message = null;
+                string prefix = null;
+                string postfix = null;
+                string interval = null;
+                string timing = null;
+
                 string palText = System.IO.File.ReadAllText(palFileName);
                 textBoxPAL.Text = palText;
 
                 Regex r1 = new Regex(@"statusmessage := Song\['(\w+)'\] \+ ' - ' \+ Song\['(\w+)'\];$", RegexOptions.IgnoreCase);
                 Regex r2 = new Regex(@"prefix : String = '(.*)';");
                 Regex r3 = new Regex(@"prefix : String = '(.*)';");
+                Regex r4 = new Regex(@"PAL.WaitFor(Time|PlayCount)\((?:(\d+)|'\+(\d{2}:\d{2}:\d{2})')\);");
+
+                int found = 0;
 
                 foreach (string element in palText.Split(new[] { '\r', '\n' }))
                 {
@@ -54,31 +68,62 @@ namespace Plugin_SongPoster
                         if (m1.Success)
                         {
                             message = "$" + m1.Groups[1].Value + "$ - $" + m1.Groups[2].Value + "$";
-                            break;
+                            found++;
                         }
                     }
 
                     if (string.IsNullOrEmpty(prefix))
                     {
-                        Match m2 = r1.Match(element);
+                        Match m2 = r2.Match(element);
                         if (m2.Success)
                         {
                             prefix = m2.Groups[1].Value;
+                            found++;
                         }
                     }
                     
                     if (string.IsNullOrEmpty(postfix))
                     {
-                        Match m3 = r1.Match(element);
+                        Match m3 = r3.Match(element);
                         if (m3.Success)
                         {
                             postfix = m3.Groups[1].Value;
+                            found++;
                         }
+                    }
+
+                    if (string.IsNullOrEmpty(interval) && string.IsNullOrEmpty(timing))
+                    {
+                        Match m4 = r4.Match(element);
+                        if (m4.Success && m4.Groups.Count == 4)
+                        {
+                            timing = m4.Groups[1].Value;
+                            interval = m4.Groups[3].Value;
+                            found++;
+                        }
+                    }
+
+                    if (found >=4)
+                    {
+                        found = 0;
+                        break;
                     }
                 }
 
                 textBoxResult.Text = prefix + message + postfix;
-            }
+
+                if (timing == "PlayCount")
+                {
+                    radioButtonWaitForPlayCount.Checked = true;
+                    numericUpDownInterval.Value = int.Parse(interval);
+                }
+                else
+                {
+                    radioButtonWaitForTime.Checked = true;
+                    string[] intervalParts = interval.Split(new char[] { ':' });
+                    numericUpDownInterval.Value = int.Parse(intervalParts[0]) * 60 + int.Parse(intervalParts[1]) + int.Parse(intervalParts[2]) / 60;
+                }
+             }
         }
 
         // Close the Window if user clicks cancel
@@ -147,12 +192,16 @@ namespace Plugin_SongPoster
             spRef.UserId = textBoxUserId.Text;
             spRef.Password = textBoxPassword.Text;
             spRef.Enabled = checkBoxUsePAL.Checked | checkBoxEnable.Checked;
+            spRef.Timing = radioButtonWaitForTime.Checked ? "WaitForTime" : "WaitForPlayCount";
+            spRef.Interval = (int) numericUpDownInterval.Value;
 
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "networks", string.Join(";", spRef.Networks));
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "UserId", spRef.UserId);
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Password", spRef.Password);
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Enabled", spRef.Enabled ? "true" : "false");
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "CustomData", spRef.CustomData);
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "Timing", spRef.Timing);
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "Interval", spRef.Interval.ToString());
 
             Close();
         }
