@@ -32,6 +32,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
+            this.panelWaitFor = new System.Windows.Forms.Panel();
+            this.radioButtonWaitForPlayCount = new System.Windows.Forms.RadioButton();
+            this.radioButtonWaitForTime = new System.Windows.Forms.RadioButton();
+            this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
+            this.labelInterval = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
             this.textBoxUserId = new System.Windows.Forms.TextBox();
@@ -58,20 +63,15 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.openFileDialogPAL = new System.Windows.Forms.OpenFileDialog();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.labelInterval = new System.Windows.Forms.Label();
-            this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
-            this.panelWaitFor = new System.Windows.Forms.Panel();
-            this.radioButtonWaitForPlayCount = new System.Windows.Forms.RadioButton();
-            this.radioButtonWaitForTime = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGeneral.SuspendLayout();
+            this.panelWaitFor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
             this.tabWebExport.SuspendLayout();
             this.groupBoxWebExport.SuspendLayout();
             this.tabWebExportPAL.SuspendLayout();
             this.groupBoxExportWebPAL.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
-            this.panelWaitFor.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -116,6 +116,64 @@
             this.groupBoxGeneral.TabIndex = 0;
             this.groupBoxGeneral.TabStop = false;
             this.groupBoxGeneral.Text = "General settings";
+            // 
+            // panelWaitFor
+            // 
+            this.panelWaitFor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelWaitFor.Controls.Add(this.radioButtonWaitForPlayCount);
+            this.panelWaitFor.Controls.Add(this.radioButtonWaitForTime);
+            this.panelWaitFor.Location = new System.Drawing.Point(6, 176);
+            this.panelWaitFor.Name = "panelWaitFor";
+            this.panelWaitFor.Size = new System.Drawing.Size(528, 28);
+            this.panelWaitFor.TabIndex = 17;
+            // 
+            // radioButtonWaitForPlayCount
+            // 
+            this.radioButtonWaitForPlayCount.AutoSize = true;
+            this.radioButtonWaitForPlayCount.Location = new System.Drawing.Point(180, 3);
+            this.radioButtonWaitForPlayCount.Name = "radioButtonWaitForPlayCount";
+            this.radioButtonWaitForPlayCount.Size = new System.Drawing.Size(210, 17);
+            this.radioButtonWaitForPlayCount.TabIndex = 20;
+            this.radioButtonWaitForPlayCount.TabStop = true;
+            this.radioButtonWaitForPlayCount.Text = "By number of songs between two posts";
+            this.radioButtonWaitForPlayCount.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonWaitForTime
+            // 
+            this.radioButtonWaitForTime.AutoSize = true;
+            this.radioButtonWaitForTime.Location = new System.Drawing.Point(6, 3);
+            this.radioButtonWaitForTime.Name = "radioButtonWaitForTime";
+            this.radioButtonWaitForTime.Size = new System.Drawing.Size(168, 17);
+            this.radioButtonWaitForTime.TabIndex = 19;
+            this.radioButtonWaitForTime.TabStop = true;
+            this.radioButtonWaitForTime.Text = "By minutes between two posts";
+            this.radioButtonWaitForTime.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownInterval
+            // 
+            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 149);
+            this.numericUpDownInterval.Maximum = new decimal(new int[] {
+            3600,
+            0,
+            0,
+            0});
+            this.numericUpDownInterval.Name = "numericUpDownInterval";
+            this.numericUpDownInterval.Size = new System.Drawing.Size(457, 20);
+            this.numericUpDownInterval.TabIndex = 16;
+            // 
+            // labelInterval
+            // 
+            this.labelInterval.AutoSize = true;
+            this.labelInterval.Location = new System.Drawing.Point(6, 151);
+            this.labelInterval.Name = "labelInterval";
+            this.labelInterval.Size = new System.Drawing.Size(42, 13);
+            this.labelInterval.TabIndex = 15;
+            this.labelInterval.Text = "Interval";
             // 
             // textBoxPassword
             // 
@@ -414,64 +472,6 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // labelInterval
-            // 
-            this.labelInterval.AutoSize = true;
-            this.labelInterval.Location = new System.Drawing.Point(6, 151);
-            this.labelInterval.Name = "labelInterval";
-            this.labelInterval.Size = new System.Drawing.Size(42, 13);
-            this.labelInterval.TabIndex = 15;
-            this.labelInterval.Text = "Interval";
-            // 
-            // numericUpDownInterval
-            // 
-            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 149);
-            this.numericUpDownInterval.Maximum = new decimal(new int[] {
-            3600,
-            0,
-            0,
-            0});
-            this.numericUpDownInterval.Name = "numericUpDownInterval";
-            this.numericUpDownInterval.Size = new System.Drawing.Size(457, 20);
-            this.numericUpDownInterval.TabIndex = 16;
-            // 
-            // panelWaitFor
-            // 
-            this.panelWaitFor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelWaitFor.Controls.Add(this.radioButtonWaitForPlayCount);
-            this.panelWaitFor.Controls.Add(this.radioButtonWaitForTime);
-            this.panelWaitFor.Location = new System.Drawing.Point(6, 176);
-            this.panelWaitFor.Name = "panelWaitFor";
-            this.panelWaitFor.Size = new System.Drawing.Size(528, 28);
-            this.panelWaitFor.TabIndex = 17;
-            // 
-            // radioButtonWaitForPlayCount
-            // 
-            this.radioButtonWaitForPlayCount.AutoSize = true;
-            this.radioButtonWaitForPlayCount.Location = new System.Drawing.Point(180, 3);
-            this.radioButtonWaitForPlayCount.Name = "radioButtonWaitForPlayCount";
-            this.radioButtonWaitForPlayCount.Size = new System.Drawing.Size(210, 17);
-            this.radioButtonWaitForPlayCount.TabIndex = 20;
-            this.radioButtonWaitForPlayCount.TabStop = true;
-            this.radioButtonWaitForPlayCount.Text = "By number of songs between two posts";
-            this.radioButtonWaitForPlayCount.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonWaitForTime
-            // 
-            this.radioButtonWaitForTime.AutoSize = true;
-            this.radioButtonWaitForTime.Location = new System.Drawing.Point(6, 3);
-            this.radioButtonWaitForTime.Name = "radioButtonWaitForTime";
-            this.radioButtonWaitForTime.Size = new System.Drawing.Size(168, 17);
-            this.radioButtonWaitForTime.TabIndex = 19;
-            this.radioButtonWaitForTime.TabStop = true;
-            this.radioButtonWaitForTime.Text = "By minutes between two posts";
-            this.radioButtonWaitForTime.UseVisualStyleBackColor = true;
-            // 
             // SongPoster_Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -482,21 +482,20 @@
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SongPoster_Config";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.SongPoster_Config_Load);
+            this.Text = "SongPoster Config";
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.groupBoxGeneral.ResumeLayout(false);
             this.groupBoxGeneral.PerformLayout();
+            this.panelWaitFor.ResumeLayout(false);
+            this.panelWaitFor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
             this.tabWebExport.ResumeLayout(false);
             this.groupBoxWebExport.ResumeLayout(false);
             this.groupBoxWebExport.PerformLayout();
             this.tabWebExportPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
-            this.panelWaitFor.ResumeLayout(false);
-            this.panelWaitFor.PerformLayout();
             this.ResumeLayout(false);
 
         }
