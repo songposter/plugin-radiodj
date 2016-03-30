@@ -12,12 +12,12 @@ namespace Plugin_SongPoster
         public void sendRequest(SongData nowPlaying, string template, string[] networks, string userId, string password)
         {
             // Parse variable message template and fill in data from nowPlaying
-            string sendText = Variables.Update(template, nowPlaying, false);
+            string sendTextVars = Variables.Update(template, nowPlaying, false);
 
             // For each selected network, build custom URL and start a "send" task
             foreach (string network in networks)
             {
-                sendText = "http://songposter.net/send-post/" + network + "/" + userId + "/1/" + password + "/" + HttpUtility.UrlEncode(sendText);
+                string sendText = "http://songposter.net/send-post/" + network + "/" + userId + "/1/" + password + "/" + HttpUtility.UrlEncode(sendTextVars);
                 try
                 {
                     WebClient client = new WebClient();
