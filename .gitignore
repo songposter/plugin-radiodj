@@ -13,14 +13,17 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-#[Rr]elease/
+Release/
+release/
 [Rr]eleases/
 x64/
 x86/
 build/
 bld/
-[Bb]in/
+Bin/
+bin/
 [Oo]bj/
+!/Plugin_SongPoster/bin/Release/Plugin_SongPoster.dll
 
 # Visual Studio 2015 cache/options directory
 .vs/

@@ -117,7 +117,7 @@ namespace Plugin_SongPoster
               if (m4.Success && m4.Groups.Count == 4)
               {
                 timing = m4.Groups[1].Value;
-                interval = m4.Groups[3].Value;
+                interval = string.IsNullOrEmpty(m4.Groups[3].Value) ? m4.Groups[2].Value : m4.Groups[3].Value;
                 found++;
               }
             }
