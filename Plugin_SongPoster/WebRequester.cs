@@ -30,7 +30,7 @@ namespace Plugin_SongPoster
                             using (StreamWriter outputFile = new StreamWriter(filename, true))
                             {
                                 outputFile.WriteLine(sendText);
-                                outputFile.WriteLine((string) e.Result);
+                                outputFile.WriteLine((string)e.Result);
                             }
                         }
                     };
@@ -43,7 +43,7 @@ namespace Plugin_SongPoster
                     Console.WriteLine(e.Message);
                 }
             }
-            
+
         }
     }
 }

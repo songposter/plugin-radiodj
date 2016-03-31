@@ -63,7 +63,7 @@ namespace Plugin_SongPoster
                 return true;
             }
         }
-        
+
         // required by IHost interface, we're not interested in what you do with your Playlist
         public bool NotifyOnPlaylistChange
         {

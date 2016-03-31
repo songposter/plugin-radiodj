@@ -18,7 +18,7 @@ namespace Plugin_SongPoster
             spRef = sp;
 
             // select each network in the listBox which has a corresponding entry in the Networks array
-            foreach(string network in spRef.Networks)
+            foreach (string network in spRef.Networks)
             {
                 listBoxNetworks1.SetSelected(listBoxNetworks1.FindString(network), true);
             }
@@ -48,105 +48,130 @@ namespace Plugin_SongPoster
         private void buttonBrowse_Click(object sender, EventArgs e)
         {
             // Only handle something if the user successfully picked something, we don't need any handling for the cancel button
-          if (openFileDialogPAL.ShowDialog() != DialogResult.OK) return;
-          // initialize a few local variables
-          string message = null;
-          string prefix = null;
-          string postfix = null;
-          string interval = null;
-          string timing = null;
+            if (openFileDialogPAL.ShowDialog() != DialogResult.OK) return;
+            // initialize a few local variables
+            string message = null;
+            string prefix = null;
+            string postfix = null;
+            string interval = null;
+            string timing = null;
+            string scopeid = null;
+            string userid = null;
+            string password = null;
 
-          // get the selected filename and read the file into a string variable
-          string palFileName = openFileDialogPAL.FileName;
-          string palText = System.IO.File.ReadAllText(palFileName);
-          // set the PAL preview box content
-          textBoxPAL.Text = palText;
+            // get the selected filename and read the file into a string variable
+            string palFileName = openFileDialogPAL.FileName;
+            string palText = System.IO.File.ReadAllText(palFileName);
+            string[] palLines = palText.Split(new[] { '\r', '\n' });
+            // set the PAL preview box content
+            textBoxPAL.Lines = palLines;
 
-          // Regex for parsing the settings from the PAL file
-          // statusmessage => currently only determine the order of artist and title
-          // @ToDo generalize to add more possible fields using the custom box on the website
-          Regex r1 = new Regex(@"statusmessage := Song\['(\w+)'\] \+ ' - ' \+ Song\['(\w+)'\];$", RegexOptions.IgnoreCase);
-          Regex r2 = new Regex(@"prefix : String = '(.*)';");
-          Regex r3 = new Regex(@"prefix : String = '(.*)';");
-          // Timing format is either PAL.WaitForPlayCount(123); or PAL.WaitForTime('+12:34:56');
-          Regex r4 = new Regex(@"PAL.WaitFor(Time|PlayCount)\((?:(\d+)|'\+(\d{2}:\d{2}:\d{2})')\);");
+            // Regex for parsing the settings from the PAL file
+            Regex r1 = new Regex(@"statusmessage := Song\['(\w+)'\] \+ ' - ' \+ Song\['(\w+)'\];$", RegexOptions.IgnoreCase);
+            Regex r2 = new Regex(@"prefix : String = '(.*)';");
+            Regex r3 = new Regex(@"prefix : String = '(.*)';");
+            // Timing format is either PAL.WaitForPlayCount(123); or PAL.WaitForTime('+12:34:56');
+            Regex r4 = new Regex(@"PAL.WaitFor(Time|PlayCount)\((?:(\d+)|'\+(\d{2}:\d{2}:\d{2})')\);");
+            // URL line 2 may leave out the picture part at the end
+            Regex r5 = new Regex(@"\+ '(?:twitter|facebook|google)' \+ '/' \+ '(\d+)' \+ '/' \+ '(\d+)' \+ '/' \+ '(.+?)' \+ '/' \+ status(?: \+ '/' \+ picture)?;");
 
-          // count if we found all the settings
-          int found = 0;
+            // count if we found all the settings
+            int found = 0;
 
-          foreach (string element in palText.Split(new[] { '\r', '\n' }))
-          {
-            // Only try to match if we haven't found this element yet
-            if (string.IsNullOrEmpty(message))
+            foreach (string element in palLines)
             {
-              Match m1 = r1.Match(element);
-              if (m1.Success)
-              {
-                // grab the matches and enclose them with $ to build RadioDJ template variables
-                message = "$" + m1.Groups[1].Value + "$ - $" + m1.Groups[2].Value + "$";
-                found++;
-              }
+                // Only try to match if we haven't found this element yet
+                if (string.IsNullOrEmpty(message))
+                {
+                    Match m1 = r1.Match(element);
+                    if (m1.Success)
+                    {
+                        // grab the matches and enclose them with $ to build RadioDJ template variables
+                        message = "$" + m1.Groups[1].Value + "$ - $" + m1.Groups[2].Value + "$";
+                        found++;
+                    }
+                }
+
+                // Only try to match if we haven't found this element yet
+                if (string.IsNullOrEmpty(prefix))
+                {
+                    Match m2 = r2.Match(element);
+                    if (m2.Success)
+                    {
+                        prefix = m2.Groups[1].Value;
+                        found++;
+                    }
+                }
+
+                // Only try to match if we haven't found this element yet
+                if (string.IsNullOrEmpty(postfix))
+                {
+                    Match m3 = r3.Match(element);
+                    if (m3.Success)
+                    {
+                        postfix = m3.Groups[1].Value;
+                        found++;
+                    }
+                }
+
+                // Only try to match if we haven't found this element yet
+                if (string.IsNullOrEmpty(interval) && string.IsNullOrEmpty(timing))
+                {
+                    Match m4 = r4.Match(element);
+                    if (m4.Success && m4.Groups.Count == 4)
+                    {
+                        timing = m4.Groups[1].Value;
+                        interval = string.IsNullOrEmpty(m4.Groups[3].Value) ? m4.Groups[2].Value : m4.Groups[3].Value;
+                        found++;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(scopeid) && string.IsNullOrEmpty(userid) && string.IsNullOrEmpty(password))
+                {
+                    Match m5 = r5.Match(element);
+                    if (m5.Success && m5.Groups.Count == 4)
+                    {
+                        scopeid = m5.Groups[1].Value;
+                        userid = m5.Groups[2].Value;
+                        password = m5.Groups[3].Value;
+                        found++;
+                    }
+                }
+
+                // each match increases the found counter, once we found all 4 setting groups, there's no need to parse the rest of the PAL file anymore
+                if (found >= 5)
+                {
+                    break;
+                }
             }
 
-            // Only try to match if we haven't found this element yet
-            if (string.IsNullOrEmpty(prefix))
+            // set the result textbox to include prefix, message and postfix - just like in SAMBC the 3 are concatenated without any extra whitespace
+            textBoxResult.Text = prefix + message + postfix;
+
+            // PlayCount Timing can be applied directly by parsing the interval string into a number
+            if (timing == "PlayCount")
             {
-              Match m2 = r2.Match(element);
-              if (m2.Success)
-              {
-                prefix = m2.Groups[1].Value;
-                found++;
-              }
+                radioButtonWaitForPlayCount.Checked = true;
+                numericUpDownInterval.Value = int.Parse(interval);
+            }
+            // "Time" Timing is a bit more complex
+            else
+            {
+                radioButtonWaitForTime.Checked = true;
+                // split the interval on the : symbol
+                string[] intervalParts = interval.Split(new char[] { ':' });
+                // then parse each part into a number, convert each part into minutes and add them up
+                numericUpDownInterval.Value = int.Parse(intervalParts[0]) * 60 + int.Parse(intervalParts[1]) + int.Parse(intervalParts[2]) / 60;
             }
 
-            // Only try to match if we haven't found this element yet
-            if (string.IsNullOrEmpty(postfix))
-            {
-              Match m3 = r3.Match(element);
-              if (m3.Success)
-              {
-                postfix = m3.Groups[1].Value;
-                found++;
-              }
-            }
+            // set the userId and password fields
+            textBoxUserId.Text = userid;
+            textBoxPassword.Text = password;
+            // @ToDo add scopeId field and set that as well
+            // textBoxScopeId = scopeid;
 
-            // Only try to match if we haven't found this element yet
-            if (string.IsNullOrEmpty(interval) && string.IsNullOrEmpty(timing))
-            {
-              Match m4 = r4.Match(element);
-              if (m4.Success && m4.Groups.Count == 4)
-              {
-                timing = m4.Groups[1].Value;
-                interval = string.IsNullOrEmpty(m4.Groups[3].Value) ? m4.Groups[2].Value : m4.Groups[3].Value;
-                found++;
-              }
-            }
-
-            // each match increases the found counter, once we found all 4 setting groups, there's no need to parse the rest of the PAL file anymore
-            if (found >=4)
-            {
-              break;
-            }
-          }
-
-          // set the result textbox to include prefix, message and postfix - just like in SAMBC the 3 are concatenated without any extra whitespace
-          textBoxResult.Text = prefix + message + postfix;
-
-          // PlayCount Timing can be applied directly by parsing the interval string into a number
-          if (timing == "PlayCount")
-          {
-            radioButtonWaitForPlayCount.Checked = true;
-            numericUpDownInterval.Value = int.Parse(interval);
-          }
-          // "Time" Timing is a bit more complex
-          else
-          {
-            radioButtonWaitForTime.Checked = true;
-            // split the interval on the : symbol
-            string[] intervalParts = interval.Split(new char[] { ':' });
-            // then parse each part into a number, convert each part into minutes and add them up
-            numericUpDownInterval.Value = int.Parse(intervalParts[0]) * 60 + int.Parse(intervalParts[1]) + int.Parse(intervalParts[2]) / 60;
-          }
+            checkBoxUsePAL.Checked = true;
+            checkBoxUseManual.Checked = false;
         }
 
         // Close the Window if user clicks cancel
@@ -159,17 +184,17 @@ namespace Plugin_SongPoster
         // Enabling one box automatically disables the other box
         private void checkBox_Click(object sender, EventArgs e)
         {
-            CheckBox checkbox1 = (CheckBox) sender;
+            CheckBox checkbox1 = (CheckBox)sender;
             CheckBox checkbox2;
-            if (checkbox1 == checkBoxEnable)
+            if (checkbox1 == checkBoxUseManual)
             {
                 checkbox2 = checkBoxUsePAL;
             }
             else
             {
-                checkbox2 = checkBoxEnable;
+                checkbox2 = checkBoxUseManual;
             }
-            
+
             // Change Checked of self
             if (checkbox1.Checked)
             {
@@ -190,7 +215,7 @@ namespace Plugin_SongPoster
             {
                 spRef.Message = textBoxResult.Text;
             }
-            else if (checkBoxEnable.Checked)
+            else if (checkBoxUseManual.Checked)
             {
                 spRef.Message = textBoxCustomData.Text;
             }
@@ -198,7 +223,7 @@ namespace Plugin_SongPoster
             // We used "nicer" names for the Networks ListBox, but need the normalized name for sending to SongPoster
             spRef.Networks = new string[listBoxNetworks1.SelectedItems.Count];
             listBoxNetworks1.SelectedItems.CopyTo(spRef.Networks, 0);
-            for(int key = 0; key < spRef.Networks.Length; ++key)
+            for (int key = 0; key < spRef.Networks.Length; ++key)
             {
                 switch (spRef.Networks[key])
                 {
@@ -219,9 +244,9 @@ namespace Plugin_SongPoster
             // Grab "simple" data from textboxes, radio buttons and numericUpDown fields
             spRef.UserId = textBoxUserId.Text;
             spRef.Password = textBoxPassword.Text;
-            spRef.Enabled = checkBoxUsePAL.Checked | checkBoxEnable.Checked;
+            spRef.Enabled = (checkBoxUsePAL.Checked | checkBoxUseManual.Checked) && checkBoxEnable.Checked;
             spRef.Timing = radioButtonWaitForPlayCount.Checked ? "WaitForPlayCount" : "WaitForTime";
-            spRef.Interval = (int) numericUpDownInterval.Value;
+            spRef.Interval = (int)numericUpDownInterval.Value;
 
             // normalize values into strings and save to XML via RadioDJ SaveSetting operation
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "networks", string.Join(";", spRef.Networks));
@@ -233,12 +258,6 @@ namespace Plugin_SongPoster
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Interval", spRef.Interval.ToString());
 
             Close();
-        }
-
-        // disable the custom tab
-        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            e.Cancel = !e.TabPage.Enabled;
         }
     }
 }
