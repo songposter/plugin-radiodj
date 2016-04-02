@@ -32,6 +32,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
+            this.textBoxResult = new System.Windows.Forms.TextBox();
+            this.labelResult = new System.Windows.Forms.Label();
             this.checkBoxEnable = new System.Windows.Forms.CheckBox();
             this.panelWaitFor = new System.Windows.Forms.Panel();
             this.radioButtonWaitForPlayCount = new System.Windows.Forms.RadioButton();
@@ -46,21 +48,9 @@
             this.labelNetworks1 = new System.Windows.Forms.Label();
             this.tabWebExportPAL = new System.Windows.Forms.TabPage();
             this.groupBoxExportWebPAL = new System.Windows.Forms.GroupBox();
-            this.checkBoxUsePAL = new System.Windows.Forms.CheckBox();
-            this.textBoxResult = new System.Windows.Forms.TextBox();
-            this.labelResult = new System.Windows.Forms.Label();
             this.textBoxPAL = new System.Windows.Forms.TextBox();
             this.labelBrowse = new System.Windows.Forms.Label();
             this.buttonBrowse = new System.Windows.Forms.Button();
-            this.tabWebExportManual = new System.Windows.Forms.TabPage();
-            this.groupBoxWebExport = new System.Windows.Forms.GroupBox();
-            this.checkBoxUseManual = new System.Windows.Forms.CheckBox();
-            this.comboBoxMethod = new System.Windows.Forms.ComboBox();
-            this.textBoxCustomData = new System.Windows.Forms.TextBox();
-            this.labelMethod = new System.Windows.Forms.Label();
-            this.labelCustomData = new System.Windows.Forms.Label();
-            this.textBoxURL = new System.Windows.Forms.TextBox();
-            this.labelURL = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.openFileDialogPAL = new System.Windows.Forms.OpenFileDialog();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -71,14 +61,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
             this.tabWebExportPAL.SuspendLayout();
             this.groupBoxExportWebPAL.SuspendLayout();
-            this.tabWebExportManual.SuspendLayout();
-            this.groupBoxWebExport.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabGeneral);
             this.tabControl1.Controls.Add(this.tabWebExportPAL);
@@ -100,6 +88,8 @@
             // 
             // groupBoxGeneral
             // 
+            this.groupBoxGeneral.Controls.Add(this.textBoxResult);
+            this.groupBoxGeneral.Controls.Add(this.labelResult);
             this.groupBoxGeneral.Controls.Add(this.checkBoxEnable);
             this.groupBoxGeneral.Controls.Add(this.panelWaitFor);
             this.groupBoxGeneral.Controls.Add(this.numericUpDownInterval);
@@ -117,6 +107,30 @@
             this.groupBoxGeneral.TabStop = false;
             this.groupBoxGeneral.Text = "General settings";
             // 
+            // textBoxResult
+            // 
+            this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxResult.AutoCompleteCustomSource.AddRange(new string[] {
+            "$title$",
+            "$artist$"});
+            this.textBoxResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBoxResult.Location = new System.Drawing.Point(111, 247);
+            this.textBoxResult.Name = "textBoxResult";
+            this.textBoxResult.Size = new System.Drawing.Size(423, 20);
+            this.textBoxResult.TabIndex = 20;
+            // 
+            // labelResult
+            // 
+            this.labelResult.AutoSize = true;
+            this.labelResult.Location = new System.Drawing.Point(8, 250);
+            this.labelResult.Name = "labelResult";
+            this.labelResult.Size = new System.Drawing.Size(97, 13);
+            this.labelResult.TabIndex = 19;
+            this.labelResult.Text = "Message Template";
+            // 
             // checkBoxEnable
             // 
             this.checkBoxEnable.AutoSize = true;
@@ -131,8 +145,8 @@
             // 
             // panelWaitFor
             // 
-            this.panelWaitFor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.panelWaitFor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForPlayCount);
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForTime);
@@ -165,8 +179,8 @@
             // 
             // numericUpDownInterval
             // 
-            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownInterval.Location = new System.Drawing.Point(77, 181);
             this.numericUpDownInterval.Maximum = new decimal(new int[] {
@@ -189,8 +203,8 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPassword.Location = new System.Drawing.Point(77, 154);
             this.textBoxPassword.Name = "textBoxPassword";
@@ -209,8 +223,8 @@
             // 
             // textBoxUserId
             // 
-            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxUserId.Location = new System.Drawing.Point(77, 127);
             this.textBoxUserId.Name = "textBoxUserId";
@@ -228,8 +242,8 @@
             // 
             // listBoxNetworks1
             // 
-            this.listBoxNetworks1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listBoxNetworks1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxNetworks1.FormattingEnabled = true;
             this.listBoxNetworks1.Items.AddRange(new object[] {
@@ -258,17 +272,14 @@
             this.tabWebExportPAL.Name = "tabWebExportPAL";
             this.tabWebExportPAL.Size = new System.Drawing.Size(555, 437);
             this.tabWebExportPAL.TabIndex = 2;
-            this.tabWebExportPAL.Text = "Web (PAL)";
+            this.tabWebExportPAL.Text = "AutoConfig (from PAL)";
             this.tabWebExportPAL.UseVisualStyleBackColor = true;
             // 
             // groupBoxExportWebPAL
             // 
-            this.groupBoxExportWebPAL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBoxExportWebPAL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxExportWebPAL.Controls.Add(this.checkBoxUsePAL);
-            this.groupBoxExportWebPAL.Controls.Add(this.textBoxResult);
-            this.groupBoxExportWebPAL.Controls.Add(this.labelResult);
             this.groupBoxExportWebPAL.Controls.Add(this.textBoxPAL);
             this.groupBoxExportWebPAL.Controls.Add(this.labelBrowse);
             this.groupBoxExportWebPAL.Controls.Add(this.buttonBrowse);
@@ -279,57 +290,17 @@
             this.groupBoxExportWebPAL.TabStop = false;
             this.groupBoxExportWebPAL.Text = "Export to Web (using PAL)";
             // 
-            // checkBoxUsePAL
-            // 
-            this.checkBoxUsePAL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxUsePAL.AutoCheck = false;
-            this.checkBoxUsePAL.AutoSize = true;
-            this.checkBoxUsePAL.Enabled = false;
-            this.checkBoxUsePAL.Location = new System.Drawing.Point(6, 313);
-            this.checkBoxUsePAL.Name = "checkBoxUsePAL";
-            this.checkBoxUsePAL.Size = new System.Drawing.Size(158, 17);
-            this.checkBoxUsePAL.TabIndex = 11;
-            this.checkBoxUsePAL.Text = "Use automatic configuration";
-            this.checkBoxUsePAL.UseVisualStyleBackColor = true;
-            this.checkBoxUsePAL.Click += new System.EventHandler(this.checkBox_Click);
-            // 
-            // textBoxResult
-            // 
-            this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxResult.AutoCompleteCustomSource.AddRange(new string[] {
-            "$title$",
-            "$artist$"});
-            this.textBoxResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBoxResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxResult.Location = new System.Drawing.Point(62, 287);
-            this.textBoxResult.Name = "textBoxResult";
-            this.textBoxResult.Size = new System.Drawing.Size(477, 20);
-            this.textBoxResult.TabIndex = 8;
-            // 
-            // labelResult
-            // 
-            this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(6, 290);
-            this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(50, 13);
-            this.labelResult.TabIndex = 7;
-            this.labelResult.Text = "Message";
-            // 
             // textBoxPAL
             // 
-            this.textBoxPAL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxPAL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPAL.Location = new System.Drawing.Point(6, 52);
             this.textBoxPAL.Multiline = true;
             this.textBoxPAL.Name = "textBoxPAL";
             this.textBoxPAL.ReadOnly = true;
             this.textBoxPAL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxPAL.Size = new System.Drawing.Size(533, 229);
+            this.textBoxPAL.Size = new System.Drawing.Size(533, 367);
             this.textBoxPAL.TabIndex = 5;
             // 
             // labelBrowse
@@ -337,127 +308,19 @@
             this.labelBrowse.AutoSize = true;
             this.labelBrowse.Location = new System.Drawing.Point(6, 28);
             this.labelBrowse.Name = "labelBrowse";
-            this.labelBrowse.Size = new System.Drawing.Size(117, 13);
+            this.labelBrowse.Size = new System.Drawing.Size(154, 13);
             this.labelBrowse.TabIndex = 3;
-            this.labelBrowse.Text = "Select PAL as template";
+            this.labelBrowse.Text = "Open .pal file from WebService";
             // 
             // buttonBrowse
             // 
-            this.buttonBrowse.Location = new System.Drawing.Point(129, 23);
+            this.buttonBrowse.Location = new System.Drawing.Point(169, 23);
             this.buttonBrowse.Name = "buttonBrowse";
             this.buttonBrowse.Size = new System.Drawing.Size(120, 23);
             this.buttonBrowse.TabIndex = 4;
             this.buttonBrowse.Text = "Browse...";
             this.buttonBrowse.UseVisualStyleBackColor = true;
             this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
-            // 
-            // tabWebExportManual
-            // 
-            this.tabWebExportManual.Controls.Add(this.groupBoxWebExport);
-            this.tabWebExportManual.Enabled = false;
-            this.tabWebExportManual.Location = new System.Drawing.Point(4, 22);
-            this.tabWebExportManual.Name = "tabWebExportManual";
-            this.tabWebExportManual.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWebExportManual.Size = new System.Drawing.Size(555, 437);
-            this.tabWebExportManual.TabIndex = 1;
-            this.tabWebExportManual.Text = "Web (Manual)";
-            this.tabWebExportManual.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxWebExport
-            // 
-            this.groupBoxWebExport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxWebExport.Controls.Add(this.checkBoxUseManual);
-            this.groupBoxWebExport.Controls.Add(this.comboBoxMethod);
-            this.groupBoxWebExport.Controls.Add(this.textBoxCustomData);
-            this.groupBoxWebExport.Controls.Add(this.labelMethod);
-            this.groupBoxWebExport.Controls.Add(this.labelCustomData);
-            this.groupBoxWebExport.Controls.Add(this.textBoxURL);
-            this.groupBoxWebExport.Controls.Add(this.labelURL);
-            this.groupBoxWebExport.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxWebExport.Name = "groupBoxWebExport";
-            this.groupBoxWebExport.Size = new System.Drawing.Size(541, 429);
-            this.groupBoxWebExport.TabIndex = 0;
-            this.groupBoxWebExport.TabStop = false;
-            this.groupBoxWebExport.Text = "Export to Web";
-            // 
-            // checkBoxUseManual
-            // 
-            this.checkBoxUseManual.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxUseManual.AutoCheck = false;
-            this.checkBoxUseManual.AutoSize = true;
-            this.checkBoxUseManual.Location = new System.Drawing.Point(6, 92);
-            this.checkBoxUseManual.Name = "checkBoxUseManual";
-            this.checkBoxUseManual.Size = new System.Drawing.Size(115, 17);
-            this.checkBoxUseManual.TabIndex = 6;
-            this.checkBoxUseManual.Text = "Use manual Config";
-            this.checkBoxUseManual.UseVisualStyleBackColor = true;
-            this.checkBoxUseManual.Click += new System.EventHandler(this.checkBox_Click);
-            // 
-            // comboBoxMethod
-            // 
-            this.comboBoxMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxMethod.FormattingEnabled = true;
-            this.comboBoxMethod.Items.AddRange(new object[] {
-            "GET",
-            "POST"});
-            this.comboBoxMethod.Location = new System.Drawing.Point(77, 65);
-            this.comboBoxMethod.Name = "comboBoxMethod";
-            this.comboBoxMethod.Size = new System.Drawing.Size(457, 21);
-            this.comboBoxMethod.TabIndex = 5;
-            // 
-            // textBoxCustomData
-            // 
-            this.textBoxCustomData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCustomData.Location = new System.Drawing.Point(77, 39);
-            this.textBoxCustomData.Name = "textBoxCustomData";
-            this.textBoxCustomData.Size = new System.Drawing.Size(457, 20);
-            this.textBoxCustomData.TabIndex = 4;
-            // 
-            // labelMethod
-            // 
-            this.labelMethod.AutoSize = true;
-            this.labelMethod.Location = new System.Drawing.Point(6, 68);
-            this.labelMethod.Name = "labelMethod";
-            this.labelMethod.Size = new System.Drawing.Size(43, 13);
-            this.labelMethod.TabIndex = 3;
-            this.labelMethod.Text = "Method";
-            // 
-            // labelCustomData
-            // 
-            this.labelCustomData.AutoSize = true;
-            this.labelCustomData.Location = new System.Drawing.Point(6, 42);
-            this.labelCustomData.Name = "labelCustomData";
-            this.labelCustomData.Size = new System.Drawing.Size(68, 13);
-            this.labelCustomData.TabIndex = 2;
-            this.labelCustomData.Text = "Custom Data";
-            // 
-            // textBoxURL
-            // 
-            this.textBoxURL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxURL.Location = new System.Drawing.Point(77, 13);
-            this.textBoxURL.Name = "textBoxURL";
-            this.textBoxURL.Size = new System.Drawing.Size(457, 20);
-            this.textBoxURL.TabIndex = 1;
-            // 
-            // labelURL
-            // 
-            this.labelURL.AutoSize = true;
-            this.labelURL.Location = new System.Drawing.Point(6, 16);
-            this.labelURL.Name = "labelURL";
-            this.labelURL.Size = new System.Drawing.Size(29, 13);
-            this.labelURL.TabIndex = 0;
-            this.labelURL.Text = "URL";
             // 
             // buttonClose
             // 
@@ -506,9 +369,6 @@
             this.tabWebExportPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.PerformLayout();
-            this.tabWebExportManual.ResumeLayout(false);
-            this.groupBoxWebExport.ResumeLayout(false);
-            this.groupBoxWebExport.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -516,16 +376,7 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabWebExportManual;
         private System.Windows.Forms.Button buttonClose;
-        private System.Windows.Forms.GroupBox groupBoxWebExport;
-        private System.Windows.Forms.CheckBox checkBoxUseManual;
-        private System.Windows.Forms.ComboBox comboBoxMethod;
-        private System.Windows.Forms.TextBox textBoxCustomData;
-        private System.Windows.Forms.Label labelMethod;
-        private System.Windows.Forms.Label labelCustomData;
-        private System.Windows.Forms.TextBox textBoxURL;
-        private System.Windows.Forms.Label labelURL;
         private System.Windows.Forms.TabPage tabWebExportPAL;
         private System.Windows.Forms.GroupBox groupBoxExportWebPAL;
         private System.Windows.Forms.TextBox textBoxPAL;
@@ -533,9 +384,6 @@
         private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.OpenFileDialog openFileDialogPAL;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBoxResult;
-        private System.Windows.Forms.Label labelResult;
-        private System.Windows.Forms.CheckBox checkBoxUsePAL;
         private System.Windows.Forms.TabPage tabGeneral;
         private System.Windows.Forms.GroupBox groupBoxGeneral;
         private System.Windows.Forms.TextBox textBoxPassword;
@@ -550,6 +398,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDownInterval;
         private System.Windows.Forms.Label labelInterval;
         private System.Windows.Forms.CheckBox checkBoxEnable;
+        private System.Windows.Forms.TextBox textBoxResult;
+        private System.Windows.Forms.Label labelResult;
     }
 }
 

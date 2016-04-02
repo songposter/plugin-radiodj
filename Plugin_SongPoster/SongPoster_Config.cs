@@ -27,7 +27,6 @@ namespace Plugin_SongPoster
             textBoxUserId.Text = spRef.UserId;
             textBoxPassword.Text = spRef.Password;
             textBoxResult.Text = spRef.Message;
-            checkBoxUsePAL.Checked = spRef.Enabled;
 
             // If timing is WaitForPlayCount, check the corresponding Radio Button
             if (spRef.Timing == "WaitForPlayCount")
@@ -169,9 +168,6 @@ namespace Plugin_SongPoster
             textBoxPassword.Text = password;
             // @ToDo add scopeId field and set that as well
             // textBoxScopeId = scopeid;
-
-            checkBoxUsePAL.Checked = true;
-            checkBoxUseManual.Checked = false;
         }
 
         // Close the Window if user clicks cancel
@@ -180,45 +176,11 @@ namespace Plugin_SongPoster
             Close();
         }
 
-        // Handle checkChange of the 2 enable Checkboxes (1 on the hidden custom tab)
-        // Enabling one box automatically disables the other box
-        private void checkBox_Click(object sender, EventArgs e)
-        {
-            CheckBox checkbox1 = (CheckBox)sender;
-            CheckBox checkbox2;
-            if (checkbox1 == checkBoxUseManual)
-            {
-                checkbox2 = checkBoxUsePAL;
-            }
-            else
-            {
-                checkbox2 = checkBoxUseManual;
-            }
-
-            // Change Checked of self
-            if (checkbox1.Checked)
-            {
-                checkbox1.Checked = false;
-            }
-            else
-            {
-                checkbox1.Checked = true;
-                checkbox2.Checked = false;
-            }
-        }
-
         // Save settings, then close the Window
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            // Set message to either the parsed result (with optional user modifications) or the fully custom part from the (currently disabled) "custom" tab
-            if (checkBoxUsePAL.Checked)
-            {
-                spRef.Message = textBoxResult.Text;
-            }
-            else if (checkBoxUseManual.Checked)
-            {
-                spRef.Message = textBoxCustomData.Text;
-            }
+            // Set message to the parsed result (with optional user modifications)
+            spRef.Message = textBoxResult.Text;
 
             // We used "nicer" names for the Networks ListBox, but need the normalized name for sending to SongPoster
             spRef.Networks = new string[listBoxNetworks1.SelectedItems.Count];
@@ -244,7 +206,7 @@ namespace Plugin_SongPoster
             // Grab "simple" data from textboxes, radio buttons and numericUpDown fields
             spRef.UserId = textBoxUserId.Text;
             spRef.Password = textBoxPassword.Text;
-            spRef.Enabled = (checkBoxUsePAL.Checked | checkBoxUseManual.Checked) && checkBoxEnable.Checked;
+            spRef.Enabled = checkBoxEnable.Checked;
             spRef.Timing = radioButtonWaitForPlayCount.Checked ? "WaitForPlayCount" : "WaitForTime";
             spRef.Interval = (int)numericUpDownInterval.Value;
 

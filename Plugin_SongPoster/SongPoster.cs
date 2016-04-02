@@ -248,6 +248,7 @@ namespace Plugin_SongPoster
         public void ShowConfig()
         {
             SongPoster_Config configWindow = new SongPoster_Config(this);
+            configWindow.Enabled = Enabled;
             configWindow.Show();
         }
 
@@ -255,6 +256,7 @@ namespace Plugin_SongPoster
         public void ShowMain()
         {
             SongPoster_Config configWindow = new SongPoster_Config(this);
+            configWindow.Enabled = Enabled;
             configWindow.Show();
         }
 
@@ -272,14 +274,22 @@ namespace Plugin_SongPoster
                 // Send a message if PlayCount counter is greater than the interval
                 if (Timing == "WaitForPlayCount" && counter > Interval)
                 {
-                    Requester.sendRequest(Player.TrackData, Message, Networks, UserId, Password);
+                    // Disable Plugin if the webservice reports a problem
+                    if (!Requester.sendRequest(Player.TrackData, Message, Networks, UserId, Password))
+                    {
+                        Enabled = false;
+                    }
                     // reset counter
                     counter = 0;
                 }
                 // Send message if "Time" comparison results in the NOW time being greater than the base time + interval
                 else if (Timing == "WaitForTime" && compareTimes >= 0)
                 {
-                    Requester.sendRequest(Player.TrackData, Message, Networks, UserId, Password);
+                    // Disable Plugin if the webservice reports a problem
+                    if (!Requester.sendRequest(Player.TrackData, Message, Networks, UserId, Password))
+                    {
+                        Enabled = false;
+                    }
                     // reset base time
                     startTimer = DateTime.Now;
                     // reset counter to prevent integer overflow
