@@ -221,5 +221,10 @@ namespace Plugin_SongPoster
 
             Close();
         }
+
+        public void setCheckBoxEnable(bool Enabled)
+        {
+            checkBoxEnable.Checked = Enabled;
+        }
     }
 }

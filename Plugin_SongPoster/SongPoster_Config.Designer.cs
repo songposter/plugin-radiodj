@@ -38,12 +38,6 @@
             this.panelWaitFor = new System.Windows.Forms.Panel();
             this.radioButtonWaitForPlayCount = new System.Windows.Forms.RadioButton();
             this.radioButtonWaitForTime = new System.Windows.Forms.RadioButton();
-            this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
-            this.labelInterval = new System.Windows.Forms.Label();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.textBoxUserId = new System.Windows.Forms.TextBox();
-            this.labelUserId = new System.Windows.Forms.Label();
             this.listBoxNetworks1 = new System.Windows.Forms.ListBox();
             this.labelNetworks1 = new System.Windows.Forms.Label();
             this.tabWebExportPAL = new System.Windows.Forms.TabPage();
@@ -54,13 +48,21 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.openFileDialogPAL = new System.Windows.Forms.OpenFileDialog();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.textBoxUserId = new System.Windows.Forms.TextBox();
+            this.labelUserId = new System.Windows.Forms.Label();
+            this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
+            this.labelInterval = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGeneral.SuspendLayout();
             this.panelWaitFor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
             this.tabWebExportPAL.SuspendLayout();
             this.groupBoxExportWebPAL.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -88,16 +90,13 @@
             // 
             // groupBoxGeneral
             // 
+            this.groupBoxGeneral.Controls.Add(this.numericUpDownInterval);
+            this.groupBoxGeneral.Controls.Add(this.labelInterval);
+            this.groupBoxGeneral.Controls.Add(this.groupBox1);
             this.groupBoxGeneral.Controls.Add(this.textBoxResult);
             this.groupBoxGeneral.Controls.Add(this.labelResult);
             this.groupBoxGeneral.Controls.Add(this.checkBoxEnable);
             this.groupBoxGeneral.Controls.Add(this.panelWaitFor);
-            this.groupBoxGeneral.Controls.Add(this.numericUpDownInterval);
-            this.groupBoxGeneral.Controls.Add(this.labelInterval);
-            this.groupBoxGeneral.Controls.Add(this.textBoxPassword);
-            this.groupBoxGeneral.Controls.Add(this.labelPassword);
-            this.groupBoxGeneral.Controls.Add(this.textBoxUserId);
-            this.groupBoxGeneral.Controls.Add(this.labelUserId);
             this.groupBoxGeneral.Controls.Add(this.listBoxNetworks1);
             this.groupBoxGeneral.Controls.Add(this.labelNetworks1);
             this.groupBoxGeneral.Location = new System.Drawing.Point(3, 3);
@@ -117,7 +116,7 @@
             "$artist$"});
             this.textBoxResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBoxResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxResult.Location = new System.Drawing.Point(111, 247);
+            this.textBoxResult.Location = new System.Drawing.Point(111, 304);
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.Size = new System.Drawing.Size(423, 20);
             this.textBoxResult.TabIndex = 20;
@@ -125,7 +124,7 @@
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(8, 250);
+            this.labelResult.Location = new System.Drawing.Point(8, 307);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(97, 13);
             this.labelResult.TabIndex = 19;
@@ -150,7 +149,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForPlayCount);
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForTime);
-            this.panelWaitFor.Location = new System.Drawing.Point(6, 208);
+            this.panelWaitFor.Location = new System.Drawing.Point(6, 265);
             this.panelWaitFor.Name = "panelWaitFor";
             this.panelWaitFor.Size = new System.Drawing.Size(528, 28);
             this.panelWaitFor.TabIndex = 17;
@@ -176,69 +175,6 @@
             this.radioButtonWaitForTime.TabStop = true;
             this.radioButtonWaitForTime.Text = "By minutes between two posts";
             this.radioButtonWaitForTime.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDownInterval
-            // 
-            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 181);
-            this.numericUpDownInterval.Maximum = new decimal(new int[] {
-            3600,
-            0,
-            0,
-            0});
-            this.numericUpDownInterval.Name = "numericUpDownInterval";
-            this.numericUpDownInterval.Size = new System.Drawing.Size(457, 20);
-            this.numericUpDownInterval.TabIndex = 16;
-            // 
-            // labelInterval
-            // 
-            this.labelInterval.AutoSize = true;
-            this.labelInterval.Location = new System.Drawing.Point(6, 183);
-            this.labelInterval.Name = "labelInterval";
-            this.labelInterval.Size = new System.Drawing.Size(42, 13);
-            this.labelInterval.TabIndex = 15;
-            this.labelInterval.Text = "Interval";
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassword.Location = new System.Drawing.Point(77, 154);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(457, 20);
-            this.textBoxPassword.TabIndex = 14;
-            // 
-            // labelPassword
-            // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(6, 157);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(53, 13);
-            this.labelPassword.TabIndex = 13;
-            this.labelPassword.Text = "Password";
-            // 
-            // textBoxUserId
-            // 
-            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUserId.Location = new System.Drawing.Point(77, 127);
-            this.textBoxUserId.Name = "textBoxUserId";
-            this.textBoxUserId.Size = new System.Drawing.Size(457, 20);
-            this.textBoxUserId.TabIndex = 12;
-            // 
-            // labelUserId
-            // 
-            this.labelUserId.AutoSize = true;
-            this.labelUserId.Location = new System.Drawing.Point(6, 130);
-            this.labelUserId.Name = "labelUserId";
-            this.labelUserId.Size = new System.Drawing.Size(40, 13);
-            this.labelUserId.TabIndex = 11;
-            this.labelUserId.Text = "UserID";
             // 
             // listBoxNetworks1
             // 
@@ -348,6 +284,82 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBoxPassword);
+            this.groupBox1.Controls.Add(this.labelPassword);
+            this.groupBox1.Controls.Add(this.textBoxUserId);
+            this.groupBox1.Controls.Add(this.labelUserId);
+            this.groupBox1.Location = new System.Drawing.Point(6, 128);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(528, 85);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "SongPoster.net Credentials";
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPassword.Location = new System.Drawing.Point(71, 53);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(451, 20);
+            this.textBoxPassword.TabIndex = 20;
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(4, 56);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(53, 13);
+            this.labelPassword.TabIndex = 19;
+            this.labelPassword.Text = "Password";
+            // 
+            // textBoxUserId
+            // 
+            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUserId.Location = new System.Drawing.Point(71, 26);
+            this.textBoxUserId.Name = "textBoxUserId";
+            this.textBoxUserId.Size = new System.Drawing.Size(451, 20);
+            this.textBoxUserId.TabIndex = 18;
+            // 
+            // labelUserId
+            // 
+            this.labelUserId.AutoSize = true;
+            this.labelUserId.Location = new System.Drawing.Point(4, 29);
+            this.labelUserId.Name = "labelUserId";
+            this.labelUserId.Size = new System.Drawing.Size(40, 13);
+            this.labelUserId.TabIndex = 17;
+            this.labelUserId.Text = "UserID";
+            // 
+            // numericUpDownInterval
+            // 
+            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 234);
+            this.numericUpDownInterval.Maximum = new decimal(new int[] {
+            3600,
+            0,
+            0,
+            0});
+            this.numericUpDownInterval.Name = "numericUpDownInterval";
+            this.numericUpDownInterval.Size = new System.Drawing.Size(457, 20);
+            this.numericUpDownInterval.TabIndex = 24;
+            // 
+            // labelInterval
+            // 
+            this.labelInterval.AutoSize = true;
+            this.labelInterval.Location = new System.Drawing.Point(8, 236);
+            this.labelInterval.Name = "labelInterval";
+            this.labelInterval.Size = new System.Drawing.Size(42, 13);
+            this.labelInterval.TabIndex = 23;
+            this.labelInterval.Text = "Interval";
+            // 
             // SongPoster_Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,10 +377,12 @@
             this.groupBoxGeneral.PerformLayout();
             this.panelWaitFor.ResumeLayout(false);
             this.panelWaitFor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
             this.tabWebExportPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -386,20 +400,21 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TabPage tabGeneral;
         private System.Windows.Forms.GroupBox groupBoxGeneral;
-        private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.Label labelPassword;
-        private System.Windows.Forms.TextBox textBoxUserId;
-        private System.Windows.Forms.Label labelUserId;
         private System.Windows.Forms.ListBox listBoxNetworks1;
         private System.Windows.Forms.Label labelNetworks1;
         private System.Windows.Forms.Panel panelWaitFor;
         private System.Windows.Forms.RadioButton radioButtonWaitForPlayCount;
         private System.Windows.Forms.RadioButton radioButtonWaitForTime;
-        private System.Windows.Forms.NumericUpDown numericUpDownInterval;
-        private System.Windows.Forms.Label labelInterval;
         private System.Windows.Forms.CheckBox checkBoxEnable;
         private System.Windows.Forms.TextBox textBoxResult;
         private System.Windows.Forms.Label labelResult;
+        private System.Windows.Forms.NumericUpDown numericUpDownInterval;
+        private System.Windows.Forms.Label labelInterval;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.TextBox textBoxUserId;
+        private System.Windows.Forms.Label labelUserId;
     }
 }
 

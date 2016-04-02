@@ -248,7 +248,7 @@ namespace Plugin_SongPoster
         public void ShowConfig()
         {
             SongPoster_Config configWindow = new SongPoster_Config(this);
-            configWindow.Enabled = Enabled;
+            configWindow.setCheckBoxEnable(Enabled);
             configWindow.Show();
         }
 
@@ -256,7 +256,7 @@ namespace Plugin_SongPoster
         public void ShowMain()
         {
             SongPoster_Config configWindow = new SongPoster_Config(this);
-            configWindow.Enabled = Enabled;
+            configWindow.setCheckBoxEnable(Enabled);
             configWindow.Show();
         }
 
