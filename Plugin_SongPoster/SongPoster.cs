@@ -96,7 +96,7 @@ namespace Plugin_SongPoster
         {
             get
             {
-                return "Send NowPlaying Information to Facebook, Google+ and Twitter via the songposter.net Web Application";
+                return "SongPoster.net Webservice to Share Now Playing Info to social networks";
             }
         }
 
@@ -123,7 +123,7 @@ namespace Plugin_SongPoster
         {
             get
             {
-                return "0.0.9";
+                return "0.4";
             }
         }
 
