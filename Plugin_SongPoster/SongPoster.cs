@@ -275,7 +275,7 @@ namespace Plugin_SongPoster
             // Check if the plugin is enabled (We trust you to have the config done properly)
             // AND 
             // Current Track's type is part of the user-selected Track types
-            if (Enabled && Array.Exists(SelectedTrackTypes, delegate (string s) { return s.Equals(Player.TrackData.TrackType.ToString()); }))
+            if (Enabled && (SelectedTrackTypes.Length == 0 || Array.Exists(SelectedTrackTypes, delegate (string s) { return s.Equals(Player.TrackData.TrackType.ToString()); })))
             {
                 // increase counter for PlayCount Timing (if we're on "Time" timing, this won't hurt either. Worst that could happen is the number overflowing)
                 counter++;

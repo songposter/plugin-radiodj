@@ -22,7 +22,7 @@ namespace Plugin_SongPoster
             foreach (string network in spRef.Networks)
             {
                 int index = listBoxNetworks1.FindStringExact(network);
-                if (index > 0)
+                if (index >= 0)
                 {
                     listBoxNetworks1.SetSelected(index, true);
                 }
@@ -53,7 +53,7 @@ namespace Plugin_SongPoster
             foreach (string trackType in spRef.SelectedTrackTypes)
             {
                 int index = listBoxTrackTypes.FindStringExact(trackType);
-                if (index > 0)
+                if (index >= 0)
                 {
                     listBoxTrackTypes.SetSelected(index, true);
                 }
