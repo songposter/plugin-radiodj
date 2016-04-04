@@ -25,6 +25,12 @@ namespace Plugin_SongPoster
         // Base time from which to count minutes for the "Time" timer
         private DateTime startTimer;
 
+        // Array of TrackType Strings from RadioDJ
+        public string[] trackTypes;
+
+        // Array of TrackTypes selected by User
+        public string[] SelectedTrackTypes;
+
         // Interval (minutes/playcounts) after which a track is sent
         public int Interval;
 
@@ -183,6 +189,8 @@ namespace Plugin_SongPoster
             Message = MyHost.GetSetting(PluginFileName, "CustomData", "$artist$ - $title$");
             Interval = Int32.Parse(MyHost.GetSetting(PluginFileName, "Interval", "0"));
             Timing = MyHost.GetSetting(PluginFileName, "Timing", "WaitForPlayCount");
+            string types = MyHost.GetSetting(PluginFileName, "Types", "");
+            SelectedTrackTypes = types.Split(new Char[] { ';' });
         }
 
         // Initialize with sensible defaults and load settings
@@ -194,6 +202,7 @@ namespace Plugin_SongPoster
             Requester = new WebRequester();
             counter = 0;
             startTimer = DateTime.Now;
+            trackTypes = Enum.GetNames(typeof(Tracks.TrackTypes));
         }
 
         // To be honest: I've got no idea what this does
@@ -264,7 +273,9 @@ namespace Plugin_SongPoster
         public void TrackChanged(TrackPlayer Player)
         {
             // Check if the plugin is enabled (We trust you to have the config done properly)
-            if (Enabled)
+            // AND 
+            // Current Track's type is part of the user-selected Track types
+            if (Enabled && Array.Exists(SelectedTrackTypes, delegate (string s) { return s.Equals(Player.TrackData.TrackType.ToString()); }))
             {
                 // increase counter for PlayCount Timing (if we're on "Time" timing, this won't hurt either. Worst that could happen is the number overflowing)
                 counter++;

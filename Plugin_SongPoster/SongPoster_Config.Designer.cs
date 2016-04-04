@@ -32,6 +32,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
+            this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
+            this.labelInterval = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.textBoxUserId = new System.Windows.Forms.TextBox();
+            this.labelUserId = new System.Windows.Forms.Label();
             this.textBoxResult = new System.Windows.Forms.TextBox();
             this.labelResult = new System.Windows.Forms.Label();
             this.checkBoxEnable = new System.Windows.Forms.CheckBox();
@@ -48,21 +55,16 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.openFileDialogPAL = new System.Windows.Forms.OpenFileDialog();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.textBoxUserId = new System.Windows.Forms.TextBox();
-            this.labelUserId = new System.Windows.Forms.Label();
-            this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
-            this.labelInterval = new System.Windows.Forms.Label();
+            this.listBoxTrackTypes = new System.Windows.Forms.ListBox();
+            this.labelTrackTypes = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.panelWaitFor.SuspendLayout();
             this.tabWebExportPAL.SuspendLayout();
             this.groupBoxExportWebPAL.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -90,6 +92,8 @@
             // 
             // groupBoxGeneral
             // 
+            this.groupBoxGeneral.Controls.Add(this.labelTrackTypes);
+            this.groupBoxGeneral.Controls.Add(this.listBoxTrackTypes);
             this.groupBoxGeneral.Controls.Add(this.numericUpDownInterval);
             this.groupBoxGeneral.Controls.Add(this.labelInterval);
             this.groupBoxGeneral.Controls.Add(this.groupBox1);
@@ -106,6 +110,82 @@
             this.groupBoxGeneral.TabStop = false;
             this.groupBoxGeneral.Text = "General settings";
             // 
+            // numericUpDownInterval
+            // 
+            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 209);
+            this.numericUpDownInterval.Maximum = new decimal(new int[] {
+            3600,
+            0,
+            0,
+            0});
+            this.numericUpDownInterval.Name = "numericUpDownInterval";
+            this.numericUpDownInterval.Size = new System.Drawing.Size(457, 20);
+            this.numericUpDownInterval.TabIndex = 24;
+            // 
+            // labelInterval
+            // 
+            this.labelInterval.AutoSize = true;
+            this.labelInterval.Location = new System.Drawing.Point(6, 211);
+            this.labelInterval.Name = "labelInterval";
+            this.labelInterval.Size = new System.Drawing.Size(42, 13);
+            this.labelInterval.TabIndex = 23;
+            this.labelInterval.Text = "Interval";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBoxPassword);
+            this.groupBox1.Controls.Add(this.labelPassword);
+            this.groupBox1.Controls.Add(this.textBoxUserId);
+            this.groupBox1.Controls.Add(this.labelUserId);
+            this.groupBox1.Location = new System.Drawing.Point(6, 114);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(528, 85);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "SongPoster.net Credentials";
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPassword.Location = new System.Drawing.Point(71, 53);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(451, 20);
+            this.textBoxPassword.TabIndex = 20;
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(4, 56);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(53, 13);
+            this.labelPassword.TabIndex = 19;
+            this.labelPassword.Text = "Password";
+            // 
+            // textBoxUserId
+            // 
+            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUserId.Location = new System.Drawing.Point(71, 26);
+            this.textBoxUserId.Name = "textBoxUserId";
+            this.textBoxUserId.Size = new System.Drawing.Size(451, 20);
+            this.textBoxUserId.TabIndex = 18;
+            // 
+            // labelUserId
+            // 
+            this.labelUserId.AutoSize = true;
+            this.labelUserId.Location = new System.Drawing.Point(4, 29);
+            this.labelUserId.Name = "labelUserId";
+            this.labelUserId.Size = new System.Drawing.Size(40, 13);
+            this.labelUserId.TabIndex = 17;
+            this.labelUserId.Text = "UserID";
+            // 
             // textBoxResult
             // 
             this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -116,15 +196,15 @@
             "$artist$"});
             this.textBoxResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBoxResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxResult.Location = new System.Drawing.Point(111, 304);
+            this.textBoxResult.Location = new System.Drawing.Point(148, 279);
             this.textBoxResult.Name = "textBoxResult";
-            this.textBoxResult.Size = new System.Drawing.Size(423, 20);
+            this.textBoxResult.Size = new System.Drawing.Size(386, 20);
             this.textBoxResult.TabIndex = 20;
             // 
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(8, 307);
+            this.labelResult.Location = new System.Drawing.Point(6, 282);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(97, 13);
             this.labelResult.TabIndex = 19;
@@ -149,7 +229,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForPlayCount);
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForTime);
-            this.panelWaitFor.Location = new System.Drawing.Point(6, 265);
+            this.panelWaitFor.Location = new System.Drawing.Point(6, 240);
             this.panelWaitFor.Name = "panelWaitFor";
             this.panelWaitFor.Size = new System.Drawing.Size(528, 28);
             this.panelWaitFor.TabIndex = 17;
@@ -189,7 +269,7 @@
             this.listBoxNetworks1.Location = new System.Drawing.Point(6, 65);
             this.listBoxNetworks1.Name = "listBoxNetworks1";
             this.listBoxNetworks1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxNetworks1.Size = new System.Drawing.Size(528, 56);
+            this.listBoxNetworks1.Size = new System.Drawing.Size(528, 43);
             this.listBoxNetworks1.TabIndex = 10;
             // 
             // labelNetworks1
@@ -284,81 +364,24 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // groupBox1
+            // listBoxTrackTypes
             // 
-            this.groupBox1.Controls.Add(this.textBoxPassword);
-            this.groupBox1.Controls.Add(this.labelPassword);
-            this.groupBox1.Controls.Add(this.textBoxUserId);
-            this.groupBox1.Controls.Add(this.labelUserId);
-            this.groupBox1.Location = new System.Drawing.Point(6, 128);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(528, 85);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "SongPoster.net Credentials";
+            this.listBoxTrackTypes.ColumnWidth = 100;
+            this.listBoxTrackTypes.Location = new System.Drawing.Point(6, 327);
+            this.listBoxTrackTypes.MultiColumn = true;
+            this.listBoxTrackTypes.Name = "listBoxTrackTypes";
+            this.listBoxTrackTypes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBoxTrackTypes.Size = new System.Drawing.Size(528, 43);
+            this.listBoxTrackTypes.TabIndex = 25;
             // 
-            // textBoxPassword
+            // labelTrackTypes
             // 
-            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassword.Location = new System.Drawing.Point(71, 53);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(451, 20);
-            this.textBoxPassword.TabIndex = 20;
-            // 
-            // labelPassword
-            // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(4, 56);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(53, 13);
-            this.labelPassword.TabIndex = 19;
-            this.labelPassword.Text = "Password";
-            // 
-            // textBoxUserId
-            // 
-            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUserId.Location = new System.Drawing.Point(71, 26);
-            this.textBoxUserId.Name = "textBoxUserId";
-            this.textBoxUserId.Size = new System.Drawing.Size(451, 20);
-            this.textBoxUserId.TabIndex = 18;
-            // 
-            // labelUserId
-            // 
-            this.labelUserId.AutoSize = true;
-            this.labelUserId.Location = new System.Drawing.Point(4, 29);
-            this.labelUserId.Name = "labelUserId";
-            this.labelUserId.Size = new System.Drawing.Size(40, 13);
-            this.labelUserId.TabIndex = 17;
-            this.labelUserId.Text = "UserID";
-            // 
-            // numericUpDownInterval
-            // 
-            this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 234);
-            this.numericUpDownInterval.Maximum = new decimal(new int[] {
-            3600,
-            0,
-            0,
-            0});
-            this.numericUpDownInterval.Name = "numericUpDownInterval";
-            this.numericUpDownInterval.Size = new System.Drawing.Size(457, 20);
-            this.numericUpDownInterval.TabIndex = 24;
-            // 
-            // labelInterval
-            // 
-            this.labelInterval.AutoSize = true;
-            this.labelInterval.Location = new System.Drawing.Point(8, 236);
-            this.labelInterval.Name = "labelInterval";
-            this.labelInterval.Size = new System.Drawing.Size(42, 13);
-            this.labelInterval.TabIndex = 23;
-            this.labelInterval.Text = "Interval";
+            this.labelTrackTypes.AutoSize = true;
+            this.labelTrackTypes.Location = new System.Drawing.Point(6, 311);
+            this.labelTrackTypes.Name = "labelTrackTypes";
+            this.labelTrackTypes.Size = new System.Drawing.Size(171, 13);
+            this.labelTrackTypes.TabIndex = 26;
+            this.labelTrackTypes.Text = "Post only the selected TrackTypes";
             // 
             // SongPoster_Config
             // 
@@ -375,14 +398,14 @@
             this.tabGeneral.ResumeLayout(false);
             this.groupBoxGeneral.ResumeLayout(false);
             this.groupBoxGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panelWaitFor.ResumeLayout(false);
             this.panelWaitFor.PerformLayout();
             this.tabWebExportPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -415,6 +438,8 @@
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.TextBox textBoxUserId;
         private System.Windows.Forms.Label labelUserId;
+        private System.Windows.Forms.Label labelTrackTypes;
+        private System.Windows.Forms.ListBox listBoxTrackTypes;
     }
 }
 

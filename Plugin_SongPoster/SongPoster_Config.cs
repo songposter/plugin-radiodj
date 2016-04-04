@@ -17,10 +17,15 @@ namespace Plugin_SongPoster
             InitializeComponent();
             spRef = sp;
 
+            listBoxNetworks1.ClearSelected();
             // select each network in the listBox which has a corresponding entry in the Networks array
             foreach (string network in spRef.Networks)
             {
-                listBoxNetworks1.SetSelected(listBoxNetworks1.FindString(network), true);
+                int index = listBoxNetworks1.FindStringExact(network);
+                if (index > 0)
+                {
+                    listBoxNetworks1.SetSelected(index, true);
+                }
             }
 
             // set textbox values and check the Enable Box if the Plugin should run
@@ -41,6 +46,18 @@ namespace Plugin_SongPoster
 
             // set the NumericUpDown Field to the Interval value from config
             numericUpDownInterval.Value = spRef.Interval;
+
+            listBoxTrackTypes.DataSource = spRef.trackTypes;
+            listBoxTrackTypes.ClearSelected();
+
+            foreach (string trackType in spRef.SelectedTrackTypes)
+            {
+                int index = listBoxTrackTypes.FindStringExact(trackType);
+                if (index > 0)
+                {
+                    listBoxTrackTypes.SetSelected(index, true);
+                }
+            }
         }
 
         // Handler for the Browse button on the PAL tab
@@ -57,6 +74,7 @@ namespace Plugin_SongPoster
             string scopeid = null;
             string userid = null;
             string password = null;
+            string types = null;
 
             // get the selected filename and read the file into a string variable
             string palFileName = openFileDialogPAL.FileName;
@@ -69,10 +87,11 @@ namespace Plugin_SongPoster
             Regex r1 = new Regex(@"statusmessage := Song\['(\w+)'\] \+ ' - ' \+ Song\['(\w+)'\];$", RegexOptions.IgnoreCase);
             Regex r2 = new Regex(@"prefix : String = '(.*)';");
             Regex r3 = new Regex(@"prefix : String = '(.*)';");
+            Regex r4 = new Regex(@"Pos\(Song\['songtype'\],'([A-Z]+)'\)");
             // Timing format is either PAL.WaitForPlayCount(123); or PAL.WaitForTime('+12:34:56');
-            Regex r4 = new Regex(@"PAL.WaitFor(Time|PlayCount)\((?:(\d+)|'\+(\d{2}:\d{2}:\d{2})')\);");
+            Regex r5 = new Regex(@"PAL.WaitFor(Time|PlayCount)\((?:(\d+)|'\+(\d{2}:\d{2}:\d{2})')\);");
             // URL line 2 may leave out the picture part at the end
-            Regex r5 = new Regex(@"\+ '(?:twitter|facebook|google)' \+ '/' \+ '(\d+)' \+ '/' \+ '(\d+)' \+ '/' \+ '(.+?)' \+ '/' \+ status(?: \+ '/' \+ picture)?;");
+            Regex r6 = new Regex(@"\+ '(?:twitter|facebook|google)' \+ '/' \+ '(\d+)' \+ '/' \+ '(\d+)' \+ '/' \+ '(.+?)' \+ '/' \+ status(?: \+ '/' \+ picture)?;");
 
             // count if we found all the settings
             int found = 0;
@@ -114,25 +133,36 @@ namespace Plugin_SongPoster
                 }
 
                 // Only try to match if we haven't found this element yet
-                if (string.IsNullOrEmpty(interval) && string.IsNullOrEmpty(timing))
+                if (string.IsNullOrEmpty(types))
                 {
                     Match m4 = r4.Match(element);
-                    if (m4.Success && m4.Groups.Count == 4)
+                    if (m4.Success && m4.Groups.Count == 2)
                     {
-                        timing = m4.Groups[1].Value;
-                        interval = string.IsNullOrEmpty(m4.Groups[3].Value) ? m4.Groups[2].Value : m4.Groups[3].Value;
-                        found++;
+                        types = m4.Groups[1].Value;
                     }
                 }
 
-                if (string.IsNullOrEmpty(scopeid) && string.IsNullOrEmpty(userid) && string.IsNullOrEmpty(password))
+                // Only try to match if we haven't found this element yet
+                if (string.IsNullOrEmpty(interval) && string.IsNullOrEmpty(timing))
                 {
                     Match m5 = r5.Match(element);
                     if (m5.Success && m5.Groups.Count == 4)
                     {
-                        scopeid = m5.Groups[1].Value;
-                        userid = m5.Groups[2].Value;
-                        password = m5.Groups[3].Value;
+                        timing = m5.Groups[1].Value;
+                        interval = string.IsNullOrEmpty(m5.Groups[3].Value) ? m5.Groups[2].Value : m5.Groups[3].Value;
+                        found++;
+                    }
+                }
+
+                // Only try to match if we haven't found this element yet
+                if (string.IsNullOrEmpty(scopeid) && string.IsNullOrEmpty(userid) && string.IsNullOrEmpty(password))
+                {
+                    Match m6 = r6.Match(element);
+                    if (m6.Success && m6.Groups.Count == 4)
+                    {
+                        scopeid = m6.Groups[1].Value;
+                        userid = m6.Groups[2].Value;
+                        password = m6.Groups[3].Value;
                         found++;
                     }
                 }
@@ -161,6 +191,64 @@ namespace Plugin_SongPoster
                 string[] intervalParts = interval.Split(new char[] { ':' });
                 // then parse each part into a number, convert each part into minutes and add them up
                 numericUpDownInterval.Value = int.Parse(intervalParts[0]) * 60 + int.Parse(intervalParts[1]) + int.Parse(intervalParts[2]) / 60;
+            }
+
+            listBoxTrackTypes.ClearSelected();
+            int index = -1;
+            foreach (char samType in types)
+            {
+                index = -1;
+
+                switch (samType)
+                {
+                    // S - Normal song
+                    case 'S':
+                        index = listBoxTrackTypes.FindStringExact("Music");
+                        break;
+
+                    // I - Station ID
+                    case 'I':
+                        index = listBoxTrackTypes.FindStringExact("Sweeper");
+                        break;
+
+                    // P - Promo
+                    case 'P':
+                        break;
+
+                    // J - Jingle
+                    case 'J':
+                        index = listBoxTrackTypes.FindStringExact("Jingle");
+                        break;
+
+                    // A - Advertisement
+                    case 'A':
+                        index = listBoxTrackTypes.FindStringExact("Commercial");
+                        break;
+
+                    // N - Syndicated news
+                    case 'N':
+                        index = listBoxTrackTypes.FindStringExact("News");
+                        break;
+
+                    // X - Sound FX
+                    case 'X':
+                        break;
+
+                    // C - Unknown content
+                    case 'C':
+                        index = listBoxTrackTypes.FindStringExact("Other");
+                        break;
+
+                    // ? - Unknown
+                    case '?':
+                        index = listBoxTrackTypes.FindStringExact("Other");
+                        break;
+                }
+
+                if (index >= 0)
+                {
+                    listBoxTrackTypes.SetSelected(index, true);
+                }
             }
 
             // set the userId and password fields
@@ -203,6 +291,10 @@ namespace Plugin_SongPoster
                 }
             }
 
+            // Copy selected items from TrackTypes ListBox to spRef variable
+            spRef.SelectedTrackTypes = new string[listBoxTrackTypes.SelectedItems.Count];
+            listBoxTrackTypes.SelectedItems.CopyTo(spRef.SelectedTrackTypes, 0);
+
             // Grab "simple" data from textboxes, radio buttons and numericUpDown fields
             spRef.UserId = textBoxUserId.Text;
             spRef.Password = textBoxPassword.Text;
@@ -218,6 +310,7 @@ namespace Plugin_SongPoster
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "CustomData", spRef.Message);
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Timing", spRef.Timing);
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Interval", spRef.Interval.ToString());
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "Types", string.Join(";", spRef.SelectedTrackTypes));
 
             Close();
         }
