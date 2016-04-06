@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Plugin_SongPoster
 {
@@ -273,23 +274,6 @@ namespace Plugin_SongPoster
             // We used "nicer" names for the Networks ListBox, but need the normalized name for sending to SongPoster
             spRef.Networks = new string[listBoxNetworks1.SelectedItems.Count];
             listBoxNetworks1.SelectedItems.CopyTo(spRef.Networks, 0);
-            for (int key = 0; key < spRef.Networks.Length; ++key)
-            {
-                switch (spRef.Networks[key])
-                {
-                    case "Facebook":
-                        spRef.Networks[key] = "facebook";
-                        break;
-
-                    case "Google+":
-                        spRef.Networks[key] = "google";
-                        break;
-
-                    case "Twitter":
-                        spRef.Networks[key] = "twitter";
-                        break;
-                }
-            }
 
             // Copy selected items from TrackTypes ListBox to spRef variable
             spRef.SelectedTrackTypes = new string[listBoxTrackTypes.SelectedItems.Count];

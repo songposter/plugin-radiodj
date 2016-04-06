@@ -32,6 +32,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
+            this.labelTrackTypes = new System.Windows.Forms.Label();
+            this.listBoxTrackTypes = new System.Windows.Forms.ListBox();
             this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
             this.labelInterval = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -55,8 +57,6 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.openFileDialogPAL = new System.Windows.Forms.OpenFileDialog();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.listBoxTrackTypes = new System.Windows.Forms.ListBox();
-            this.labelTrackTypes = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGeneral.SuspendLayout();
@@ -109,6 +109,25 @@
             this.groupBoxGeneral.TabIndex = 0;
             this.groupBoxGeneral.TabStop = false;
             this.groupBoxGeneral.Text = "General settings";
+            // 
+            // labelTrackTypes
+            // 
+            this.labelTrackTypes.AutoSize = true;
+            this.labelTrackTypes.Location = new System.Drawing.Point(6, 311);
+            this.labelTrackTypes.Name = "labelTrackTypes";
+            this.labelTrackTypes.Size = new System.Drawing.Size(171, 13);
+            this.labelTrackTypes.TabIndex = 26;
+            this.labelTrackTypes.Text = "Post only the selected TrackTypes";
+            // 
+            // listBoxTrackTypes
+            // 
+            this.listBoxTrackTypes.ColumnWidth = 100;
+            this.listBoxTrackTypes.Location = new System.Drawing.Point(6, 327);
+            this.listBoxTrackTypes.MultiColumn = true;
+            this.listBoxTrackTypes.Name = "listBoxTrackTypes";
+            this.listBoxTrackTypes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBoxTrackTypes.Size = new System.Drawing.Size(528, 43);
+            this.listBoxTrackTypes.TabIndex = 25;
             // 
             // numericUpDownInterval
             // 
@@ -264,7 +283,7 @@
             this.listBoxNetworks1.FormattingEnabled = true;
             this.listBoxNetworks1.Items.AddRange(new object[] {
             "Facebook",
-            "Google+",
+            "Google",
             "Twitter"});
             this.listBoxNetworks1.Location = new System.Drawing.Point(6, 65);
             this.listBoxNetworks1.Name = "listBoxNetworks1";
@@ -363,25 +382,6 @@
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // listBoxTrackTypes
-            // 
-            this.listBoxTrackTypes.ColumnWidth = 100;
-            this.listBoxTrackTypes.Location = new System.Drawing.Point(6, 327);
-            this.listBoxTrackTypes.MultiColumn = true;
-            this.listBoxTrackTypes.Name = "listBoxTrackTypes";
-            this.listBoxTrackTypes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxTrackTypes.Size = new System.Drawing.Size(528, 43);
-            this.listBoxTrackTypes.TabIndex = 25;
-            // 
-            // labelTrackTypes
-            // 
-            this.labelTrackTypes.AutoSize = true;
-            this.labelTrackTypes.Location = new System.Drawing.Point(6, 311);
-            this.labelTrackTypes.Name = "labelTrackTypes";
-            this.labelTrackTypes.Size = new System.Drawing.Size(171, 13);
-            this.labelTrackTypes.TabIndex = 26;
-            this.labelTrackTypes.Text = "Post only the selected TrackTypes";
             // 
             // SongPoster_Config
             // 

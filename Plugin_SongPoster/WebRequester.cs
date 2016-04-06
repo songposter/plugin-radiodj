@@ -22,7 +22,7 @@ namespace Plugin_SongPoster
             // For each selected network, build custom URL and start a "send" task
             foreach (string network in networks)
             {
-                string sendText = "http://songposter.net/send-post/" + network + "/0/" + userId + "/" + Uri.EscapeDataString(password) + "/" + Uri.EscapeDataString(sendTextVars);
+                string sendText = "http://songposter.net/send-post/" + network.ToLower() + "/0/" + userId + "/" + Uri.EscapeDataString(password) + "/" + Uri.EscapeDataString(sendTextVars);
                 try
                 {
                     WebClient client = new WebClient();
