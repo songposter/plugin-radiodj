@@ -91,8 +91,6 @@ namespace Plugin_SongPoster
             passwordErrorProvider.SetIconAlignment(textBoxPassword, ErrorIconAlignment.MiddleRight);
             passwordErrorProvider.SetIconPadding(textBoxPassword, -20);
             passwordErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-
-            buttonSave.Enabled = validateCredentials(spRef.Email, spRef.Password);
         }
 
         ///<summary>
@@ -311,6 +309,12 @@ namespace Plugin_SongPoster
         ///</summary>
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (!validateCredentials(textBoxEmail.Text, textBoxPassword.Text))
+            {
+                return;
+            }
+                
+            
             //Set message to the parsed result (with optional user modifications)
             spRef.Message = textBoxResult.Text;
 
@@ -323,6 +327,7 @@ namespace Plugin_SongPoster
             listBoxTrackTypes.SelectedItems.CopyTo(spRef.SelectedTrackTypes, 0);
 
             //Grab "simple" data from textboxes, radio buttons and numericUpDown fields
+            Int32.TryParse(textBoxUserId.Text, out spRef.UserId);
             spRef.Email = textBoxEmail.Text;
             spRef.Password = textBoxPassword.Text;
             spRef.Enabled = checkBoxEnable.Checked;
