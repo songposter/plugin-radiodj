@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -13,6 +14,21 @@ namespace Plugin_SongPoster
         ///reference to the Main class
         ///</summary>
         private SongPoster spRef;
+
+        ///<summary>
+        ///ErrorProvider for E-Mail Field
+        ///</summary>
+        private ErrorProvider eMailErrorProvider;
+
+        ///<summary>
+        ///ErrorProvider for Password Field
+        ///</summary>
+        private ErrorProvider passwordErrorProvider;
+
+        /// <summary>
+        ///has validation passed
+        /// </summary>
+        private bool validationPassed = false;
 
         ///<summary>
         ///constructor, initialize some form elements with values from the Config storage
@@ -35,7 +51,8 @@ namespace Plugin_SongPoster
             }
 
             //set textbox values and check the Enable Box if the Plugin should run
-            textBoxUserId.Text = spRef.UserId;
+            textBoxUserId.Text = spRef.UserId.ToString();
+            textBoxEmail.Text = spRef.Email;
             textBoxPassword.Text = spRef.Password;
             textBoxResult.Text = spRef.Message;
 
@@ -64,6 +81,18 @@ namespace Plugin_SongPoster
                     listBoxTrackTypes.SetSelected(index, true);
                 }
             }
+
+            eMailErrorProvider = new ErrorProvider();
+            eMailErrorProvider.SetIconAlignment(textBoxEmail, ErrorIconAlignment.MiddleRight);
+            eMailErrorProvider.SetIconPadding(textBoxEmail, -20);
+            eMailErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
+            passwordErrorProvider = new ErrorProvider();
+            passwordErrorProvider.SetIconAlignment(textBoxPassword, ErrorIconAlignment.MiddleRight);
+            passwordErrorProvider.SetIconPadding(textBoxPassword, -20);
+            passwordErrorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
+            buttonSave.Enabled = validateCredentials(spRef.Email, spRef.Password);
         }
 
         ///<summary>
@@ -264,6 +293,9 @@ namespace Plugin_SongPoster
             textBoxPassword.Text = password;
             //@ToDo add scopeId field and set that as well
             //textBoxScopeId = scopeid;
+
+            //@ToDo add Email to PAL or standalone config file and validate credentials are still good
+            buttonSave.Enabled = true;
         }
 
         ///<summary>
@@ -291,7 +323,7 @@ namespace Plugin_SongPoster
             listBoxTrackTypes.SelectedItems.CopyTo(spRef.SelectedTrackTypes, 0);
 
             //Grab "simple" data from textboxes, radio buttons and numericUpDown fields
-            spRef.UserId = textBoxUserId.Text;
+            spRef.Email = textBoxEmail.Text;
             spRef.Password = textBoxPassword.Text;
             spRef.Enabled = checkBoxEnable.Checked;
             spRef.Timing = radioButtonWaitForPlayCount.Checked ? "WaitForPlayCount" : "WaitForTime";
@@ -299,7 +331,8 @@ namespace Plugin_SongPoster
 
             //normalize values into strings and save to XML via RadioDJ SaveSetting operation
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "networks", string.Join(";", spRef.Networks));
-            spRef.MyHost.SaveSetting(spRef.PluginFileName, "UserId", spRef.UserId);
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "UserId", spRef.UserId.ToString());
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "Email", spRef.Email);
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Password", spRef.Password);
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Enabled", spRef.Enabled ? "true" : "false");
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "CustomData", spRef.Message);
@@ -316,6 +349,34 @@ namespace Plugin_SongPoster
         public void setCheckBoxEnable(bool Enabled)
         {
             checkBoxEnable.Checked = Enabled;
+        }
+
+        private void groupBoxCredentials_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            buttonSave.Enabled = validateCredentials(textBoxEmail.Text, textBoxPassword.Text);
+        }
+
+        private bool validateCredentials(string email, string password)
+        {
+            WebClient client = new WebClient();
+            client.Credentials = new NetworkCredential(email, password);
+            try
+            {
+                string reply = client.DownloadString("https://songposter.net/api/validate");
+                eMailErrorProvider.SetError(textBoxEmail, "");
+                passwordErrorProvider.SetError(textBoxPassword, "");
+                textBoxUserId.Text = reply;
+
+                return true;
+            }
+            catch (WebException)
+            {
+                eMailErrorProvider.SetError(textBoxEmail, "E-Mail or Password incorrect");
+                passwordErrorProvider.SetError(textBoxPassword, "E-Mail or Password incorrect");
+                buttonSave.Enabled = false;
+
+                return false;
+            }
         }
     }
 }

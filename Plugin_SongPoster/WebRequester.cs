@@ -10,7 +10,7 @@ namespace Plugin_SongPoster
 {
     class WebRequester
     {
-        public Boolean sendRequest(SongData nowPlaying, string template, string[] networks, string userId, string password)
+        public Boolean sendRequest(SongData nowPlaying, string template, string[] networks, int userId, string password)
         {
             string filename = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Plugin_SongPoster.log";
 
@@ -22,7 +22,7 @@ namespace Plugin_SongPoster
             // For each selected network, build custom URL and start a "send" task
             foreach (string network in networks)
             {
-                string sendText = "http://songposter.net/send-post/" + network.ToLower() + "/0/" + userId + "/" + Uri.EscapeDataString(password) + "/" + Uri.EscapeDataString(sendTextVars);
+                string sendText = "http://songposter.net/send-post/" + network.ToLower() + "/0/" + userId.ToString() + "/" + Uri.EscapeDataString(password) + "/" + Uri.EscapeDataString(sendTextVars);
                 try
                 {
                     WebClient client = new WebClient();

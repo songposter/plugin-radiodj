@@ -70,7 +70,12 @@ namespace Plugin_SongPoster
         ///<summary>
         ///SongPoster Userid
         ///</summary>
-        public string UserId;
+        public int UserId;
+
+        ///<summary>
+        ///SongPoster Userid
+        ///</summary>
+        public string Email;
 
         ///<summary>
         ///SongPoster Password
@@ -249,11 +254,12 @@ namespace Plugin_SongPoster
         {
             string networks = MyHost.GetSetting(PluginFileName, "networks", "");
             Networks = networks.Split(new Char[] { ';' });
-            UserId = MyHost.GetSetting(PluginFileName, "UserId", "");
+            Int32.TryParse(MyHost.GetSetting(PluginFileName, "UserId", ""), out UserId);
+            Email = MyHost.GetSetting(PluginFileName, "Email", "");
             Password = MyHost.GetSetting(PluginFileName, "Password", "");
             Enabled = (MyHost.GetSetting(PluginFileName, "Enabled", "false") == "true");
             Message = MyHost.GetSetting(PluginFileName, "CustomData", "$artist$ - $title$");
-            Interval = Int32.Parse(MyHost.GetSetting(PluginFileName, "Interval", "0"));
+            Int32.TryParse(MyHost.GetSetting(PluginFileName, "Interval", "0"), out Interval);
             Timing = MyHost.GetSetting(PluginFileName, "Timing", "WaitForPlayCount");
             string types = MyHost.GetSetting(PluginFileName, "Types", "");
             SelectedTrackTypes = types.Split(new Char[] { ';' });

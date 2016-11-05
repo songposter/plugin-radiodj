@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugin_SongPoster</name>
+    </assembly>
+    <members>
+        <member name="T:Plugin_SongPoster.SongPoster_Config">
+            <summary>
+            This is our GUI class, called when the Config window is opened
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster_Config.spRef">
+            <summary>
+            reference to the Main class
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster_Config.eMailErrorProvider">
+            <summary>
+            ErrorProvider for E-Mail Field
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster_Config.passwordErrorProvider">
+            <summary>
+            ErrorProvider for Password Field
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster_Config.validationPassed">
+             <summary>
+            has validation passed
+             </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.#ctor(Plugin_SongPoster.SongPoster)">
+            <summary>
+            constructor, initialize some form elements with values from the Config storage
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.buttonBrowse_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handler for the Browse button on the PAL tab
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.buttonClose_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close the Window if user clicks cancel
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.buttonSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Save settings, then close the Window
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.setCheckBoxEnable(System.Boolean)">
+            <summary>
+            setter for global checkBoxEnable Enabled state
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster_Config.components">
+            <summary>
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.Dispose(System.Boolean)">
+            <summary>
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.InitializeComponent">
+            <summary>
+            Erforderliche Methode für die Designerunterstützung.
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="T:Plugin_SongPoster.SongPoster">
+            <summary>
+            This is our main class and entrypoint for RadioDJ
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.MyEvents">
+            <summary>
+            Declaration required for AvailableActions method from IPlugin interface, no idea what that does, though
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.MyHost">
+            <summary>
+            Reference to the IHost interface by which we interact with the RadioDJ main program
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Requester">
+            <summary>
+            This is the class where the actual web requests are sent
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.counter">
+            <summary>
+            Counter for PlayCount Timer.
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.startTimer">
+            <summary>
+            Base time from which to count minutes for the "Time" timer
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.trackTypes">
+            <summary>
+            Array of TrackType Strings from RadioDJ
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.SelectedTrackTypes">
+            <summary>
+            Array of TrackTypes selected by User
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Interval">
+            <summary>
+            Interval (minutes/playcounts) after which a track is sent
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Timing">
+            <summary>
+            Defines the kind of timing for the Interval, either WaitForPlayCount or WaitForTime
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Message">
+            <summary>
+            Message (Template) to send out
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Networks">
+            <summary>
+            Array of networks to use and send the track info to
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.UserId">
+            <summary>
+            SongPoster Userid
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Email">
+            <summary>
+            SongPoster Userid
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Password">
+            <summary>
+            SongPoster Password
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.Enabled">
+            <summary>
+            Plugin must be enabled by hand (after configuration)
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.PluginFileName">
+            <summary>
+            Reference by which Settings are stored and loaded
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.HasActions">
+            <summary>
+            required by IHost interface, no idea what it's good for
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.NotifyOnPlaylistChange">
+            <summary>
+            required by IHost interface, we're not interested in what you do with your Playlist
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.NotifyOnTrackChange">
+            <summary>
+            required by IHost interface, let us know when the current track changes so we can send a message to SongPoster
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.NotifyOnUIChange">
+            <summary>
+            required by IHost interface, no idea what it's good for
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.PluginDescription">
+            <summary>
+            required by IHost interface, Meta Data
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.PluginName">
+            <summary>
+            required by IHost interface, Meta Data
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.PluginTitle">
+            <summary>
+            required by IHost interface, Meta Data
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.PluginVersion">
+            <summary>
+            required by IHost interface, Meta Data
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.SongPoster.PluginZone">
+            <summary>
+            required by IHost interface, no idea what it's good for or what Zones are available at all
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.AddTrack2Plugin(rdjInterface.TrackPlayer,System.Int64,System.Int32)">
+            <summary>
+            required by IHost interface, I think this has to do with the PlayListChange Event
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.AddTrack2Plugin(System.Int32,System.Int64,System.Int32)">
+            <summary>
+            required by IHost interface, I think this has to do with the PlayListChange Event
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.AssistedStateChanged(System.Boolean)">
+            <summary>
+            required by IHost interface, I think this has to do with the UIChange Event
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.AutoDJStateChanged(System.Boolean)">
+            <summary>
+            required by IHost interface, I think this has to do with the UIChange Event
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.AvailableActions">
+            <summary>
+            To be honest: I've got no idea what this does
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.Closing">
+            <summary>
+            I don't think you can "close" a plugin without closing RadioDJ
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.LoadSettings">
+            <summary>
+            Get settings from the XML storage
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.Initialize(rdjInterface.IHost)">
+            <summary>
+            Initialize with sensible defaults and load settings
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.InputStateChanged(System.Boolean)">
+            <summary>
+            To be honest: I've got no idea what this does
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            No Keyboard shortcuts for this plugin
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.LoadGUI">
+            <summary>
+            To be honest: I've got no idea what this does
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.PlaylistChanged">
+            <summary>
+            required by IHost interface, we're not interested in what you do with your Playlist
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.ReloadCategories">
+            <summary>
+            required by IHost interface, we're not interested in what you do with your Categories
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.ReloadLanguage">
+            <summary>
+            required by IHost interface, we're not interested in what you do with your Language settings
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.RunAction(System.String,System.String[])">
+            <summary>
+            To be honest: I've got no idea what this does
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.ShowAbout">
+            <summary>
+            Show the About box for this plugin
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.ShowConfig">
+            <summary>
+            Show our Config screen
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.ShowMain">
+            <summary>
+            Show our "Main" screen? When is this fired? Is double-clicking the plugin list and clicking the config button different?
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster.TrackChanged(rdjInterface.TrackPlayer)">
+            <summary>
+            This is where the magic happens. Fired on track change
+            </summary>
+        </member>
+        <member name="T:Plugin_SongPoster.Properties.Resources">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.Properties.Resources.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:Plugin_SongPoster.Properties.Resources.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+    </members>
+</doc>

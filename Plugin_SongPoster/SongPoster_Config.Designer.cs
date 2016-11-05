@@ -36,11 +36,13 @@
             this.listBoxTrackTypes = new System.Windows.Forms.ListBox();
             this.numericUpDownInterval = new System.Windows.Forms.NumericUpDown();
             this.labelInterval = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.labelPassword = new System.Windows.Forms.Label();
+            this.groupBoxCredentials = new System.Windows.Forms.GroupBox();
             this.textBoxUserId = new System.Windows.Forms.TextBox();
             this.labelUserId = new System.Windows.Forms.Label();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.textBoxResult = new System.Windows.Forms.TextBox();
             this.labelResult = new System.Windows.Forms.Label();
             this.checkBoxEnable = new System.Windows.Forms.CheckBox();
@@ -61,7 +63,7 @@
             this.tabGeneral.SuspendLayout();
             this.groupBoxGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxCredentials.SuspendLayout();
             this.panelWaitFor.SuspendLayout();
             this.tabWebExportPAL.SuspendLayout();
             this.groupBoxExportWebPAL.SuspendLayout();
@@ -96,7 +98,7 @@
             this.groupBoxGeneral.Controls.Add(this.listBoxTrackTypes);
             this.groupBoxGeneral.Controls.Add(this.numericUpDownInterval);
             this.groupBoxGeneral.Controls.Add(this.labelInterval);
-            this.groupBoxGeneral.Controls.Add(this.groupBox1);
+            this.groupBoxGeneral.Controls.Add(this.groupBoxCredentials);
             this.groupBoxGeneral.Controls.Add(this.textBoxResult);
             this.groupBoxGeneral.Controls.Add(this.labelResult);
             this.groupBoxGeneral.Controls.Add(this.checkBoxEnable);
@@ -113,7 +115,7 @@
             // labelTrackTypes
             // 
             this.labelTrackTypes.AutoSize = true;
-            this.labelTrackTypes.Location = new System.Drawing.Point(6, 311);
+            this.labelTrackTypes.Location = new System.Drawing.Point(6, 338);
             this.labelTrackTypes.Name = "labelTrackTypes";
             this.labelTrackTypes.Size = new System.Drawing.Size(171, 13);
             this.labelTrackTypes.TabIndex = 26;
@@ -122,7 +124,7 @@
             // listBoxTrackTypes
             // 
             this.listBoxTrackTypes.ColumnWidth = 100;
-            this.listBoxTrackTypes.Location = new System.Drawing.Point(6, 327);
+            this.listBoxTrackTypes.Location = new System.Drawing.Point(6, 354);
             this.listBoxTrackTypes.MultiColumn = true;
             this.listBoxTrackTypes.Name = "listBoxTrackTypes";
             this.listBoxTrackTypes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
@@ -134,7 +136,7 @@
             this.numericUpDownInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 209);
+            this.numericUpDownInterval.Location = new System.Drawing.Point(77, 236);
             this.numericUpDownInterval.Maximum = new decimal(new int[] {
             3600,
             0,
@@ -147,24 +149,47 @@
             // labelInterval
             // 
             this.labelInterval.AutoSize = true;
-            this.labelInterval.Location = new System.Drawing.Point(6, 211);
+            this.labelInterval.Location = new System.Drawing.Point(6, 238);
             this.labelInterval.Name = "labelInterval";
             this.labelInterval.Size = new System.Drawing.Size(42, 13);
             this.labelInterval.TabIndex = 23;
             this.labelInterval.Text = "Interval";
             // 
-            // groupBox1
+            // groupBoxCredentials
             // 
-            this.groupBox1.Controls.Add(this.textBoxPassword);
-            this.groupBox1.Controls.Add(this.labelPassword);
-            this.groupBox1.Controls.Add(this.textBoxUserId);
-            this.groupBox1.Controls.Add(this.labelUserId);
-            this.groupBox1.Location = new System.Drawing.Point(6, 114);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(528, 85);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "SongPoster.net Credentials";
+            this.groupBoxCredentials.Controls.Add(this.textBoxUserId);
+            this.groupBoxCredentials.Controls.Add(this.labelUserId);
+            this.groupBoxCredentials.Controls.Add(this.textBoxPassword);
+            this.groupBoxCredentials.Controls.Add(this.labelPassword);
+            this.groupBoxCredentials.Controls.Add(this.textBoxEmail);
+            this.groupBoxCredentials.Controls.Add(this.labelEmail);
+            this.groupBoxCredentials.Location = new System.Drawing.Point(6, 114);
+            this.groupBoxCredentials.Name = "groupBoxCredentials";
+            this.groupBoxCredentials.Size = new System.Drawing.Size(528, 112);
+            this.groupBoxCredentials.TabIndex = 21;
+            this.groupBoxCredentials.TabStop = false;
+            this.groupBoxCredentials.Text = "SongPoster.net Credentials";
+            this.groupBoxCredentials.Validating += new System.ComponentModel.CancelEventHandler(this.groupBoxCredentials_Validating);
+            // 
+            // textBoxUserId
+            // 
+            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUserId.Location = new System.Drawing.Point(71, 80);
+            this.textBoxUserId.Name = "textBoxUserId";
+            this.textBoxUserId.ReadOnly = true;
+            this.textBoxUserId.Size = new System.Drawing.Size(451, 20);
+            this.textBoxUserId.TabIndex = 22;
+            // 
+            // labelUserId
+            // 
+            this.labelUserId.AutoSize = true;
+            this.labelUserId.Location = new System.Drawing.Point(4, 83);
+            this.labelUserId.Name = "labelUserId";
+            this.labelUserId.Size = new System.Drawing.Size(49, 13);
+            this.labelUserId.TabIndex = 21;
+            this.labelUserId.Text = "ID (Auto)";
             // 
             // textBoxPassword
             // 
@@ -186,24 +211,24 @@
             this.labelPassword.TabIndex = 19;
             this.labelPassword.Text = "Password";
             // 
-            // textBoxUserId
+            // textBoxEmail
             // 
-            this.textBoxUserId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUserId.Location = new System.Drawing.Point(71, 26);
-            this.textBoxUserId.Name = "textBoxUserId";
-            this.textBoxUserId.Size = new System.Drawing.Size(451, 20);
-            this.textBoxUserId.TabIndex = 18;
+            this.textBoxEmail.Location = new System.Drawing.Point(71, 26);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(451, 20);
+            this.textBoxEmail.TabIndex = 18;
             // 
-            // labelUserId
+            // labelEmail
             // 
-            this.labelUserId.AutoSize = true;
-            this.labelUserId.Location = new System.Drawing.Point(4, 29);
-            this.labelUserId.Name = "labelUserId";
-            this.labelUserId.Size = new System.Drawing.Size(40, 13);
-            this.labelUserId.TabIndex = 17;
-            this.labelUserId.Text = "UserID";
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(4, 29);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(36, 13);
+            this.labelEmail.TabIndex = 17;
+            this.labelEmail.Text = "E-Mail";
             // 
             // textBoxResult
             // 
@@ -215,7 +240,7 @@
             "$artist$"});
             this.textBoxResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBoxResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxResult.Location = new System.Drawing.Point(148, 279);
+            this.textBoxResult.Location = new System.Drawing.Point(148, 306);
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.Size = new System.Drawing.Size(386, 20);
             this.textBoxResult.TabIndex = 20;
@@ -223,7 +248,7 @@
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(6, 282);
+            this.labelResult.Location = new System.Drawing.Point(6, 309);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(97, 13);
             this.labelResult.TabIndex = 19;
@@ -248,7 +273,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForPlayCount);
             this.panelWaitFor.Controls.Add(this.radioButtonWaitForTime);
-            this.panelWaitFor.Location = new System.Drawing.Point(6, 240);
+            this.panelWaitFor.Location = new System.Drawing.Point(6, 267);
             this.panelWaitFor.Name = "panelWaitFor";
             this.panelWaitFor.Size = new System.Drawing.Size(528, 28);
             this.panelWaitFor.TabIndex = 17;
@@ -360,6 +385,7 @@
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClose.CausesValidation = false;
             this.buttonClose.Location = new System.Drawing.Point(490, 472);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
@@ -399,8 +425,8 @@
             this.groupBoxGeneral.ResumeLayout(false);
             this.groupBoxGeneral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInterval)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxCredentials.ResumeLayout(false);
+            this.groupBoxCredentials.PerformLayout();
             this.panelWaitFor.ResumeLayout(false);
             this.panelWaitFor.PerformLayout();
             this.tabWebExportPAL.ResumeLayout(false);
@@ -433,13 +459,15 @@
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.NumericUpDown numericUpDownInterval;
         private System.Windows.Forms.Label labelInterval;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxCredentials;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label labelPassword;
-        private System.Windows.Forms.TextBox textBoxUserId;
-        private System.Windows.Forms.Label labelUserId;
+        private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelTrackTypes;
         private System.Windows.Forms.ListBox listBoxTrackTypes;
+        private System.Windows.Forms.TextBox textBoxUserId;
+        private System.Windows.Forms.Label labelUserId;
     }
 }
 
