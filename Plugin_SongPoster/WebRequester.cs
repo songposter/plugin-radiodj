@@ -26,7 +26,7 @@ namespace Plugin_SongPoster
                 try
                 {
                     WebClient client = new WebClient();
-                    client.Headers.Add("user-agent", "SongPoster/0.5 (RadioDJ)");
+                    client.Headers.Add("user-agent", "SongPoster/0.6 (RadioDJ)");
                     client.DownloadStringCompleted += (sender, e) =>
                     {
                         if (!e.Cancelled && e.Error == null)
@@ -47,8 +47,8 @@ namespace Plugin_SongPoster
                                 responseText = reader.ReadToEnd();
                             }
 
-                            // Only show the messagebox if the error variable isn't set
-                            if (!success)
+                            // Only show the messagebox if the success variable was previously set
+                            if (success)
                             {
                                 success = false;
                                 MessageBox.Show(responseText, "SongPoster Plugin Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
