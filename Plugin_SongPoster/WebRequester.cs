@@ -26,7 +26,7 @@ namespace Plugin_SongPoster
                 try
                 {
                     WebClient client = new WebClient();
-                    client.Headers.Add("user-agent", "SongPoster/0.5 (RadioDJ)");
+                    client.Headers.Add("user-agent", "SongPoster/0.6 (RadioDJ)");
                     client.DownloadStringCompleted += (sender, e) =>
                     {
                         if (!e.Cancelled && e.Error == null)
