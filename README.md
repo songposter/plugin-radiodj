@@ -30,7 +30,7 @@ You can either manually configure the plugin or make it automatically load all s
   
   ![SongPoster download button](https://dl.dropboxusercontent.com/u/7370504/radioDJ/PAL-Download.png)
 
-3. [Download the Plugin](https://github.com/songposter/plugin-radiodj/releases/download/v0.5/Plugin_SongPoster.dll)
+3. [Download the Plugin](https://github.com/songposter/plugin-radiodj/releases/download/v0.6/Plugin_SongPoster.dll)
 4. Install the Plugin (put the dll file into the plugins directory and it will be available on the next start of RadioDJ)
 5. Open the Options screen
   
