@@ -17,7 +17,7 @@ namespace Plugin_SongPoster
             // Parse variable message template and fill in data from nowPlaying
             string sendTextVars = Variables.Update(template, nowPlaying, false);
 
-            Boolean error = false;
+            Boolean success = true;
 
             // For each selected network, build custom URL and start a "send" task
             foreach (string network in networks)
@@ -48,9 +48,9 @@ namespace Plugin_SongPoster
                             }
 
                             // Only show the messagebox if the error variable isn't set
-                            if (!error)
+                            if (!success)
                             {
-                                error = true;
+                                success = false;
                                 MessageBox.Show(responseText, "SongPoster Plugin Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
 
@@ -68,10 +68,11 @@ namespace Plugin_SongPoster
                 {
                     // @ToDo do some proper error handling
                     Console.WriteLine(e.Message);
+                    success = false;
                 }
             }
 
-            return error;
+            return success;
 
         }
     }
