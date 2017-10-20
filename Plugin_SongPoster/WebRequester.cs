@@ -68,7 +68,7 @@ namespace Plugin_SongPoster
                     {
                         Encoding = Encoding.UTF8
                     };
-                    client.Headers.Add("user-agent", "SongPoster/0.6 (RadioDJ)");
+                    client.Headers.Add("user-agent", "SongPoster/0.7 (RadioDJ)");
 
                     client.DownloadStringCompleted += (sender, e) =>
                     {
