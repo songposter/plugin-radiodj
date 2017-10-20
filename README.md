@@ -28,27 +28,27 @@ You can either manually configure the plugin or make it automatically load all s
 1. Sign Up for the service (Currently in closed beta, [apply for the Beta Test here](https://groups.google.com/forum/#!forum/song-poster-testing))
 2. Set everything up and download any of the offered PAL Scripts
   
-  ![SongPoster download button](https://dl.dropboxusercontent.com/u/7370504/radioDJ/PAL-Download.png)
+  ![SongPoster download button](https://songposter.net/img/radiodj/PAL-Download.png)
 
 3. [Download the Plugin](https://github.com/songposter/plugin-radiodj/releases/download/v0.6/Plugin_SongPoster.dll)
 4. Install the Plugin (put the dll file into the plugins directory and it will be available on the next start of RadioDJ)
 5. Open the Options screen
   
-  ![RadioDJ Main screen](https://dl.dropboxusercontent.com/u/7370504/radioDJ/Step1.png)
+  ![RadioDJ Main screen](https://songposter.net/img/radiodj/Step1.png)
   
 5. Click the Plugins Button in the lower right
   
-  ![RadioDJ Options window](https://dl.dropboxusercontent.com/u/7370504/radioDJ/Step2.png)
+  ![RadioDJ Options window](https://songposter.net/img/radiodj/Step2.png)
 
 6. Select SongPoster in the list
   
-  ![RadioDJ Options window](https://dl.dropboxusercontent.com/u/7370504/radioDJ/Step3.png)
+  ![RadioDJ Options window](https://songposter.net/img/radiodj/Step3.png)
 
 7. Either double-click the entry or hit the Settings or Show button
  
 8. Go right to the last tab for the automatic configuration. Load the .pal file downloaded in Step #2 from your harddisk using the Browse Button. (This will automatically fill in the caption template and General configuration fields on the first tab)
   
-  ![RadioDJ Options window](https://dl.dropboxusercontent.com/u/7370504/radioDJ/Step4.png)
+  ![RadioDJ Options window](https://songposter.net/img/radiodj/Step4.png)
 
 9. Hit the Save button to apply your settings and save them for your next session
 
