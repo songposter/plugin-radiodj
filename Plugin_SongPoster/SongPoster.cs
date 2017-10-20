@@ -88,6 +88,21 @@ namespace Plugin_SongPoster
         public bool Enabled = false;
 
         ///<summary>
+        ///Posting cover Artwork must be enabled by hand (after configuration)
+        ///</summary>
+        public bool SendCoverArt = false;
+
+        ///<summary>
+        ///Cover Art picture upload method
+        ///</summary>
+        public string SendCoverArtPictureLocation;
+
+        ///<summary>
+        ///Fallback File or Filename for CoverArt (if enabled)
+        ///</summary>
+        public string SendCoverArtFallbackFile;
+
+        ///<summary>
         ///Reference by which Settings are stored and loaded
         ///</summary>
         public string PluginFileName;
@@ -184,7 +199,7 @@ namespace Plugin_SongPoster
         {
             get
             {
-                return "0.6";
+                return "0.7";
             }
         }
 
@@ -263,6 +278,9 @@ namespace Plugin_SongPoster
             Timing = MyHost.GetSetting(PluginFileName, "Timing", "WaitForPlayCount");
             string types = MyHost.GetSetting(PluginFileName, "Types", "");
             SelectedTrackTypes = types.Split(new Char[] { ';' });
+            SendCoverArt = (MyHost.GetSetting(PluginFileName, "CoverArtEnabled", "false") == "true");
+            SendCoverArtPictureLocation = MyHost.GetSetting(PluginFileName, "CoverArtPictureLocation", "picturesOnline");
+            SendCoverArtFallbackFile = MyHost.GetSetting(PluginFileName, "CoverArtFallbackFile", "na.jpg");
         }
 
         ///<summary>
@@ -349,7 +367,8 @@ namespace Plugin_SongPoster
         public void ShowConfig()
         {
             SongPoster_Config configWindow = new SongPoster_Config(this);
-            configWindow.setCheckBoxEnable(Enabled);
+            configWindow.SetCheckBoxEnable(Enabled);
+            configWindow.SetChekBoxSendCoverArt(SendCoverArt);
             configWindow.Show();
         }
 
@@ -359,7 +378,8 @@ namespace Plugin_SongPoster
         public void ShowMain()
         {
             SongPoster_Config configWindow = new SongPoster_Config(this);
-            configWindow.setCheckBoxEnable(Enabled);
+            configWindow.SetCheckBoxEnable(Enabled);
+            configWindow.SetChekBoxSendCoverArt(SendCoverArt);
             configWindow.Show();
         }
 
@@ -382,7 +402,7 @@ namespace Plugin_SongPoster
                 if (Timing == "WaitForPlayCount" && counter > Interval)
                 {
                     //Disable Plugin if the webservice reports a problem
-                    if (!Requester.sendRequest(Player.TrackData, Message, Networks, UserId, Password))
+                    if (!Requester.SendRequest(this, Player.TrackData, Message, Networks, UserId, Password, SendCoverArt))
                     {
                         Enabled = false;
                     }
@@ -393,7 +413,7 @@ namespace Plugin_SongPoster
                 else if (Timing == "WaitForTime" && compareTimes >= 0)
                 {
                     //Disable Plugin if the webservice reports a problem
-                    if (!Requester.sendRequest(Player.TrackData, Message, Networks, UserId, Password))
+                    if (!Requester.SendRequest(this, Player.TrackData, Message, Networks, UserId, Password, SendCoverArt))
                     {
                         Enabled = false;
                     }

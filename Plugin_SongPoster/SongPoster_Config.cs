@@ -25,11 +25,6 @@ namespace Plugin_SongPoster
         ///</summary>
         private ErrorProvider passwordErrorProvider;
 
-        /// <summary>
-        ///has validation passed
-        /// </summary>
-        private bool validationPassed = false;
-
         ///<summary>
         ///constructor, initialize some form elements with values from the Config storage
         ///</summary>
@@ -82,6 +77,17 @@ namespace Plugin_SongPoster
                 }
             }
 
+            checkBoxSendCoverArt.Checked = spRef.SendCoverArt;
+
+            if (spRef.SendCoverArtPictureLocation == "picturesOnline")
+            {
+                radioButtonPictureLocationOnline.Checked = true;
+            }
+            else if (spRef.SendCoverArtPictureLocation == "picturesTag")
+            {
+                radioButtonPictureLocationTag.Checked = true;
+            }
+
             eMailErrorProvider = new ErrorProvider();
             eMailErrorProvider.SetIconAlignment(textBoxEmail, ErrorIconAlignment.MiddleRight);
             eMailErrorProvider.SetIconPadding(textBoxEmail, -20);
@@ -96,7 +102,7 @@ namespace Plugin_SongPoster
         ///<summary>
         ///Handler for the Browse button on the PAL tab
         ///</summary>
-        private void buttonBrowse_Click(object sender, EventArgs e)
+        private void ButtonBrowse_Click(object sender, EventArgs e)
         {
             //Only handle something if the user successfully picked something, we don't need any handling for the cancel button
             if (openFileDialogPAL.ShowDialog() != DialogResult.OK) return;
@@ -299,7 +305,7 @@ namespace Plugin_SongPoster
         ///<summary>
         ///Close the Window if user clicks cancel
         ///</summary>
-        private void buttonClose_Click(object sender, EventArgs e)
+        private void ButtonClose_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -307,9 +313,12 @@ namespace Plugin_SongPoster
         ///<summary>
         ///Save settings, then close the Window
         ///</summary>
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (!validateCredentials(textBoxEmail.Text, textBoxPassword.Text))
+            Cursor currentCursor = Cursor.Current;
+            Cursor.Current = Cursors.WaitCursor;
+
+            if (!ValidateCredentials(textBoxEmail.Text, textBoxPassword.Text))
             {
                 return;
             }
@@ -331,7 +340,9 @@ namespace Plugin_SongPoster
             spRef.Email = textBoxEmail.Text;
             spRef.Password = textBoxPassword.Text;
             spRef.Enabled = checkBoxEnable.Checked;
+            spRef.SendCoverArt = checkBoxSendCoverArt.Checked;
             spRef.Timing = radioButtonWaitForPlayCount.Checked ? "WaitForPlayCount" : "WaitForTime";
+            spRef.SendCoverArtPictureLocation = radioButtonPictureLocationOnline.Checked ? "picturesOnline" : "picturesTag";
             spRef.Interval = (int)numericUpDownInterval.Value;
 
             //normalize values into strings and save to XML via RadioDJ SaveSetting operation
@@ -344,27 +355,43 @@ namespace Plugin_SongPoster
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Timing", spRef.Timing);
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Interval", spRef.Interval.ToString());
             spRef.MyHost.SaveSetting(spRef.PluginFileName, "Types", string.Join(";", spRef.SelectedTrackTypes));
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "CoverArtEnabled", spRef.SendCoverArt ? "true" : "false");
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "CoverArtPictureLocation", spRef.SendCoverArtPictureLocation);
+            spRef.MyHost.SaveSetting(spRef.PluginFileName, "CoverArtFallbackFile", spRef.SendCoverArtFallbackFile);
 
-            Close();
+            Cursor.Current = currentCursor;
         }
 
         ///<summary>
         ///setter for global checkBoxEnable Enabled state
         ///</summary>
-        public void setCheckBoxEnable(bool Enabled)
+        public void SetCheckBoxEnable(bool Enabled)
         {
             checkBoxEnable.Checked = Enabled;
         }
 
-        private void groupBoxCredentials_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+
+        ///<summary>
+        ///setter for global checkBoxSendCoverArt Enabled state
+        ///</summary>
+        public void SetChekBoxSendCoverArt(bool sendCoverArt)
         {
-            buttonSave.Enabled = validateCredentials(textBoxEmail.Text, textBoxPassword.Text);
+            checkBoxSendCoverArt.Checked = sendCoverArt;
         }
 
-        private bool validateCredentials(string email, string password)
+
+        private void GroupBoxCredentials_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            WebClient client = new WebClient();
-            client.Credentials = new NetworkCredential(email, password);
+            buttonSave.Enabled = ValidateCredentials(textBoxEmail.Text, textBoxPassword.Text);
+        }
+
+        private bool ValidateCredentials(string email, string password)
+        {
+            WebClient client = new WebClient
+            {
+                Credentials = new NetworkCredential(email, password)
+            };
+
             try
             {
                 string reply = client.DownloadString("https://songposter.net/api/validate");
@@ -382,6 +409,33 @@ namespace Plugin_SongPoster
 
                 return false;
             }
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to close the configuration without saving? All unsaved progress will be lost!", "Close without saving?",
+                             MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Question);
+
+            e.Cancel = (result == DialogResult.No);
+        }
+
+        private void ButtonBrowseCover_Click(object sender, EventArgs e)
+        {
+            //Only handle something if the user successfully picked something, we don't need any handling for the cancel button
+            if (openFileDialogCover.ShowDialog() != DialogResult.OK) return;
+
+            spRef.SendCoverArtFallbackFile = openFileDialogCover.FileName;
+        }
+
+        private void CheckBoxSendCoverArt_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox sendCoverArt = sender as CheckBox;
+
+            groupBoxPictureLocation.Enabled = sendCoverArt.Checked;
+            groupBoxDefaultImage.Enabled = sendCoverArt.Checked;
+
+            spRef.SendCoverArt = sendCoverArt.Checked;
         }
     }
 }

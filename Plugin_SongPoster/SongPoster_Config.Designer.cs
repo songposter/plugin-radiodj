@@ -56,9 +56,21 @@
             this.textBoxPAL = new System.Windows.Forms.TextBox();
             this.labelBrowse = new System.Windows.Forms.Label();
             this.buttonBrowse = new System.Windows.Forms.Button();
+            this.tabCoverArt = new System.Windows.Forms.TabPage();
+            this.groupBoxCoverArt = new System.Windows.Forms.GroupBox();
+            this.groupBoxDefaultImage = new System.Windows.Forms.GroupBox();
+            this.labelCoverFallbackFilenameHint = new System.Windows.Forms.Label();
+            this.buttonBrowseCover = new System.Windows.Forms.Button();
+            this.labelCoverFallbackFilename = new System.Windows.Forms.Label();
+            this.groupBoxPictureLocation = new System.Windows.Forms.GroupBox();
+            this.radioButtonPictureLocationTag = new System.Windows.Forms.RadioButton();
+            this.radioButtonPictureLocationOnline = new System.Windows.Forms.RadioButton();
+            this.labelPictureLocation = new System.Windows.Forms.Label();
+            this.checkBoxSendCoverArt = new System.Windows.Forms.CheckBox();
             this.buttonClose = new System.Windows.Forms.Button();
             this.openFileDialogPAL = new System.Windows.Forms.OpenFileDialog();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.openFileDialogCover = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGeneral.SuspendLayout();
@@ -67,6 +79,10 @@
             this.panelWaitFor.SuspendLayout();
             this.tabWebExportPAL.SuspendLayout();
             this.groupBoxExportWebPAL.SuspendLayout();
+            this.tabCoverArt.SuspendLayout();
+            this.groupBoxCoverArt.SuspendLayout();
+            this.groupBoxDefaultImage.SuspendLayout();
+            this.groupBoxPictureLocation.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -76,6 +92,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabGeneral);
             this.tabControl1.Controls.Add(this.tabWebExportPAL);
+            this.tabControl1.Controls.Add(this.tabCoverArt);
             this.tabControl1.Location = new System.Drawing.Point(6, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -169,7 +186,7 @@
             this.groupBoxCredentials.TabIndex = 21;
             this.groupBoxCredentials.TabStop = false;
             this.groupBoxCredentials.Text = "SongPoster.net Credentials";
-            this.groupBoxCredentials.Validating += new System.ComponentModel.CancelEventHandler(this.groupBoxCredentials_Validating);
+            this.groupBoxCredentials.Validating += new System.ComponentModel.CancelEventHandler(this.GroupBoxCredentials_Validating);
             // 
             // textBoxUserId
             // 
@@ -332,7 +349,7 @@
             this.tabWebExportPAL.Name = "tabWebExportPAL";
             this.tabWebExportPAL.Size = new System.Drawing.Size(555, 437);
             this.tabWebExportPAL.TabIndex = 2;
-            this.tabWebExportPAL.Text = "AutoConfig (from PAL)";
+            this.tabWebExportPAL.Text = "Import Settings (from PAL)";
             this.tabWebExportPAL.UseVisualStyleBackColor = true;
             // 
             // groupBoxExportWebPAL
@@ -348,7 +365,7 @@
             this.groupBoxExportWebPAL.Size = new System.Drawing.Size(546, 425);
             this.groupBoxExportWebPAL.TabIndex = 0;
             this.groupBoxExportWebPAL.TabStop = false;
-            this.groupBoxExportWebPAL.Text = "Export to Web (using PAL)";
+            this.groupBoxExportWebPAL.Text = "Import Settings (from .pal  file)";
             // 
             // textBoxPAL
             // 
@@ -380,7 +397,130 @@
             this.buttonBrowse.TabIndex = 4;
             this.buttonBrowse.Text = "Browse...";
             this.buttonBrowse.UseVisualStyleBackColor = true;
-            this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
+            this.buttonBrowse.Click += new System.EventHandler(this.ButtonBrowse_Click);
+            // 
+            // tabCoverArt
+            // 
+            this.tabCoverArt.Controls.Add(this.groupBoxCoverArt);
+            this.tabCoverArt.Location = new System.Drawing.Point(4, 22);
+            this.tabCoverArt.Name = "tabCoverArt";
+            this.tabCoverArt.Size = new System.Drawing.Size(555, 437);
+            this.tabCoverArt.TabIndex = 4;
+            this.tabCoverArt.Text = "Cover Art";
+            this.tabCoverArt.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxCoverArt
+            // 
+            this.groupBoxCoverArt.Controls.Add(this.groupBoxDefaultImage);
+            this.groupBoxCoverArt.Controls.Add(this.groupBoxPictureLocation);
+            this.groupBoxCoverArt.Controls.Add(this.checkBoxSendCoverArt);
+            this.groupBoxCoverArt.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxCoverArt.Name = "groupBoxCoverArt";
+            this.groupBoxCoverArt.Size = new System.Drawing.Size(549, 431);
+            this.groupBoxCoverArt.TabIndex = 0;
+            this.groupBoxCoverArt.TabStop = false;
+            this.groupBoxCoverArt.Text = "Configure Cover Art";
+            // 
+            // groupBoxDefaultImage
+            // 
+            this.groupBoxDefaultImage.Controls.Add(this.labelCoverFallbackFilenameHint);
+            this.groupBoxDefaultImage.Controls.Add(this.buttonBrowseCover);
+            this.groupBoxDefaultImage.Controls.Add(this.labelCoverFallbackFilename);
+            this.groupBoxDefaultImage.Enabled = false;
+            this.groupBoxDefaultImage.Location = new System.Drawing.Point(7, 150);
+            this.groupBoxDefaultImage.Name = "groupBoxDefaultImage";
+            this.groupBoxDefaultImage.Size = new System.Drawing.Size(536, 65);
+            this.groupBoxDefaultImage.TabIndex = 31;
+            this.groupBoxDefaultImage.TabStop = false;
+            this.groupBoxDefaultImage.Text = "Default / Fallback Image (i.e.: Track has no cover assigned)";
+            // 
+            // labelCoverFallbackFilenameHint
+            // 
+            this.labelCoverFallbackFilenameHint.AutoSize = true;
+            this.labelCoverFallbackFilenameHint.Location = new System.Drawing.Point(189, 19);
+            this.labelCoverFallbackFilenameHint.MaximumSize = new System.Drawing.Size(245, 0);
+            this.labelCoverFallbackFilenameHint.Name = "labelCoverFallbackFilenameHint";
+            this.labelCoverFallbackFilenameHint.Size = new System.Drawing.Size(243, 39);
+            this.labelCoverFallbackFilenameHint.TabIndex = 2;
+            this.labelCoverFallbackFilenameHint.Text = "Note: When using the \"online\" method above, only the actual filename will be sent" +
+    " and combined with the base URL you set online";
+            // 
+            // buttonBrowseCover
+            // 
+            this.buttonBrowseCover.Location = new System.Drawing.Point(62, 15);
+            this.buttonBrowseCover.Name = "buttonBrowseCover";
+            this.buttonBrowseCover.Size = new System.Drawing.Size(120, 23);
+            this.buttonBrowseCover.TabIndex = 1;
+            this.buttonBrowseCover.Text = "Browse...";
+            this.buttonBrowseCover.UseVisualStyleBackColor = true;
+            this.buttonBrowseCover.Click += new System.EventHandler(this.ButtonBrowseCover_Click);
+            // 
+            // labelCoverFallbackFilename
+            // 
+            this.labelCoverFallbackFilename.AutoSize = true;
+            this.labelCoverFallbackFilename.Location = new System.Drawing.Point(7, 20);
+            this.labelCoverFallbackFilename.Name = "labelCoverFallbackFilename";
+            this.labelCoverFallbackFilename.Size = new System.Drawing.Size(49, 13);
+            this.labelCoverFallbackFilename.TabIndex = 0;
+            this.labelCoverFallbackFilename.Text = "Filename";
+            // 
+            // groupBoxPictureLocation
+            // 
+            this.groupBoxPictureLocation.Controls.Add(this.radioButtonPictureLocationTag);
+            this.groupBoxPictureLocation.Controls.Add(this.radioButtonPictureLocationOnline);
+            this.groupBoxPictureLocation.Controls.Add(this.labelPictureLocation);
+            this.groupBoxPictureLocation.Enabled = false;
+            this.groupBoxPictureLocation.Location = new System.Drawing.Point(7, 43);
+            this.groupBoxPictureLocation.Name = "groupBoxPictureLocation";
+            this.groupBoxPictureLocation.Size = new System.Drawing.Size(536, 100);
+            this.groupBoxPictureLocation.TabIndex = 30;
+            this.groupBoxPictureLocation.TabStop = false;
+            this.groupBoxPictureLocation.Text = "Picture Location";
+            // 
+            // radioButtonPictureLocationTag
+            // 
+            this.radioButtonPictureLocationTag.AutoSize = true;
+            this.radioButtonPictureLocationTag.Location = new System.Drawing.Point(10, 65);
+            this.radioButtonPictureLocationTag.Name = "radioButtonPictureLocationTag";
+            this.radioButtonPictureLocationTag.Size = new System.Drawing.Size(385, 17);
+            this.radioButtonPictureLocationTag.TabIndex = 2;
+            this.radioButtonPictureLocationTag.TabStop = true;
+            this.radioButtonPictureLocationTag.Tag = "picturesTag";
+            this.radioButtonPictureLocationTag.Text = "I don\'t have online storage for my pictures, please use the tag covers directly";
+            this.radioButtonPictureLocationTag.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonPictureLocationOnline
+            // 
+            this.radioButtonPictureLocationOnline.AutoSize = true;
+            this.radioButtonPictureLocationOnline.Location = new System.Drawing.Point(10, 41);
+            this.radioButtonPictureLocationOnline.Name = "radioButtonPictureLocationOnline";
+            this.radioButtonPictureLocationOnline.Size = new System.Drawing.Size(173, 17);
+            this.radioButtonPictureLocationOnline.TabIndex = 1;
+            this.radioButtonPictureLocationOnline.TabStop = true;
+            this.radioButtonPictureLocationOnline.Tag = "picturesOnline";
+            this.radioButtonPictureLocationOnline.Text = "My pictures are available online";
+            this.radioButtonPictureLocationOnline.UseVisualStyleBackColor = true;
+            // 
+            // labelPictureLocation
+            // 
+            this.labelPictureLocation.AutoSize = true;
+            this.labelPictureLocation.Location = new System.Drawing.Point(7, 20);
+            this.labelPictureLocation.Name = "labelPictureLocation";
+            this.labelPictureLocation.Size = new System.Drawing.Size(503, 13);
+            this.labelPictureLocation.TabIndex = 0;
+            this.labelPictureLocation.Text = "Do you have your cover pictures online already or do you want to use the pictures" +
+    " directly from your tags?";
+            // 
+            // checkBoxSendCoverArt
+            // 
+            this.checkBoxSendCoverArt.AutoSize = true;
+            this.checkBoxSendCoverArt.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxSendCoverArt.Name = "checkBoxSendCoverArt";
+            this.checkBoxSendCoverArt.Size = new System.Drawing.Size(98, 17);
+            this.checkBoxSendCoverArt.TabIndex = 29;
+            this.checkBoxSendCoverArt.Text = "Send Cover Art";
+            this.checkBoxSendCoverArt.UseVisualStyleBackColor = true;
+            this.checkBoxSendCoverArt.CheckedChanged += new System.EventHandler(this.CheckBoxSendCoverArt_CheckedChanged);
             // 
             // buttonClose
             // 
@@ -392,7 +532,7 @@
             this.buttonClose.TabIndex = 1;
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            this.buttonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
             // openFileDialogPAL
             // 
@@ -407,7 +547,7 @@
             this.buttonSave.TabIndex = 7;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // SongPoster_Config
             // 
@@ -420,6 +560,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SongPoster_Config";
             this.Text = "SongPoster Config";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.groupBoxGeneral.ResumeLayout(false);
@@ -432,6 +573,13 @@
             this.tabWebExportPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.ResumeLayout(false);
             this.groupBoxExportWebPAL.PerformLayout();
+            this.tabCoverArt.ResumeLayout(false);
+            this.groupBoxCoverArt.ResumeLayout(false);
+            this.groupBoxCoverArt.PerformLayout();
+            this.groupBoxDefaultImage.ResumeLayout(false);
+            this.groupBoxDefaultImage.PerformLayout();
+            this.groupBoxPictureLocation.ResumeLayout(false);
+            this.groupBoxPictureLocation.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -468,6 +616,18 @@
         private System.Windows.Forms.ListBox listBoxTrackTypes;
         private System.Windows.Forms.TextBox textBoxUserId;
         private System.Windows.Forms.Label labelUserId;
+        private System.Windows.Forms.TabPage tabCoverArt;
+        private System.Windows.Forms.GroupBox groupBoxCoverArt;
+        private System.Windows.Forms.GroupBox groupBoxPictureLocation;
+        private System.Windows.Forms.RadioButton radioButtonPictureLocationTag;
+        private System.Windows.Forms.RadioButton radioButtonPictureLocationOnline;
+        private System.Windows.Forms.Label labelPictureLocation;
+        private System.Windows.Forms.CheckBox checkBoxSendCoverArt;
+        private System.Windows.Forms.GroupBox groupBoxDefaultImage;
+        private System.Windows.Forms.Label labelCoverFallbackFilenameHint;
+        private System.Windows.Forms.Button buttonBrowseCover;
+        private System.Windows.Forms.Label labelCoverFallbackFilename;
+        private System.Windows.Forms.OpenFileDialog openFileDialogCover;
     }
 }
 

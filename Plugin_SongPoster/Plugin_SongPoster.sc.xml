@@ -24,34 +24,34 @@
             ErrorProvider for Password Field
             </summary>
         </member>
-        <member name="F:Plugin_SongPoster.SongPoster_Config.validationPassed">
-             <summary>
-            has validation passed
-             </summary>
-        </member>
         <member name="M:Plugin_SongPoster.SongPoster_Config.#ctor(Plugin_SongPoster.SongPoster)">
             <summary>
             constructor, initialize some form elements with values from the Config storage
             </summary>
         </member>
-        <member name="M:Plugin_SongPoster.SongPoster_Config.buttonBrowse_Click(System.Object,System.EventArgs)">
+        <member name="M:Plugin_SongPoster.SongPoster_Config.ButtonBrowse_Click(System.Object,System.EventArgs)">
             <summary>
             Handler for the Browse button on the PAL tab
             </summary>
         </member>
-        <member name="M:Plugin_SongPoster.SongPoster_Config.buttonClose_Click(System.Object,System.EventArgs)">
+        <member name="M:Plugin_SongPoster.SongPoster_Config.ButtonClose_Click(System.Object,System.EventArgs)">
             <summary>
             Close the Window if user clicks cancel
             </summary>
         </member>
-        <member name="M:Plugin_SongPoster.SongPoster_Config.buttonSave_Click(System.Object,System.EventArgs)">
+        <member name="M:Plugin_SongPoster.SongPoster_Config.ButtonSave_Click(System.Object,System.EventArgs)">
             <summary>
             Save settings, then close the Window
             </summary>
         </member>
-        <member name="M:Plugin_SongPoster.SongPoster_Config.setCheckBoxEnable(System.Boolean)">
+        <member name="M:Plugin_SongPoster.SongPoster_Config.SetCheckBoxEnable(System.Boolean)">
             <summary>
             setter for global checkBoxEnable Enabled state
+            </summary>
+        </member>
+        <member name="M:Plugin_SongPoster.SongPoster_Config.SetChekBoxSendCoverArt(System.Boolean)">
+            <summary>
+            setter for global checkBoxSendCoverArt Enabled state
             </summary>
         </member>
         <member name="F:Plugin_SongPoster.SongPoster_Config.components">
@@ -149,6 +149,21 @@
         <member name="F:Plugin_SongPoster.SongPoster.Enabled">
             <summary>
             Plugin must be enabled by hand (after configuration)
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.SendCoverArt">
+            <summary>
+            Posting cover Artwork must be enabled by hand (after configuration)
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.SendCoverArtPictureLocation">
+            <summary>
+            Cover Art picture upload method
+            </summary>
+        </member>
+        <member name="F:Plugin_SongPoster.SongPoster.SendCoverArtFallbackFile">
+            <summary>
+            Fallback File or Filename for CoverArt (if enabled)
             </summary>
         </member>
         <member name="F:Plugin_SongPoster.SongPoster.PluginFileName">
