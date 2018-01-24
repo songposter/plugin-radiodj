@@ -1,5 +1,9 @@
 # plugin-radiodj
-SongPoster Plugin for [RadioDJ](http://radiodj.ro)
+SongPoster Plugin for [RadioDJ v1](http://radiodj.ro)
+
+## Compatibility with RadioDJ v2
+RadioDJ v2 is currently lacking support for third party plugins.
+There's no announcement wether or not this will ever come back at all, so for the time being our web service is incompatible with RadioDJ v2.
 
 ## What is SongPoster?
 Song Poster connects your online radio station to popular social networks.
