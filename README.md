@@ -15,7 +15,7 @@ Song Poster is currently in closed beta, but we're accepting new testers all the
 If you'd like to participate, join this Google Group for further instructions:
 [SongPoster testing](https://groups.google.com/forum/#!forum/song-poster-testing)
 
-A first public and stable release is planned for Q2/2016.
+A first public and stable release is planned for Q3/2018.
 
 ## How can this plugin help?
 Basically you can see this as a customized version of the official RadioDJ NowPlaying Plugin.
