@@ -326,12 +326,14 @@
             this.listBoxNetworks1.Items.AddRange(new object[] {
             "Facebook",
             "Google",
-            "Twitter"});
+            "Twitter",
+            "Instagram"});
             this.listBoxNetworks1.Location = new System.Drawing.Point(6, 65);
             this.listBoxNetworks1.Name = "listBoxNetworks1";
             this.listBoxNetworks1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxNetworks1.Size = new System.Drawing.Size(528, 43);
             this.listBoxNetworks1.TabIndex = 10;
+            this.listBoxNetworks1.SelectedIndexChanged += new System.EventHandler(this.listBoxNetworks1_SelectedIndexChanged);
             // 
             // labelNetworks1
             // 

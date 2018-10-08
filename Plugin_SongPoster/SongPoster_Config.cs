@@ -132,7 +132,7 @@ namespace Plugin_SongPoster
             //Timing format is either PAL.WaitForPlayCount(123); or PAL.WaitForTime('+12:34:56');
             Regex r5 = new Regex(@"PAL.WaitFor(Time|PlayCount)\((?:(\d+)|'\+(\d{2}:\d{2}:\d{2})')\);");
             //URL line 2 may leave out the picture part at the end
-            Regex r6 = new Regex(@"\+ '(?:twitter|facebook|google)' \+ '/' \+ '(\d+)' \+ '/' \+ '(\d+)' \+ '/' \+ '(.+?)' \+ '/' \+ status(?: \+ '/' \+ picture)?;");
+            Regex r6 = new Regex(@"\+ '(?:twitter|facebook|google|instagram)' \+ '/' \+ '(\d+)' \+ '/' \+ '(\d+)' \+ '/' \+ '(.+?)' \+ '/' \+ status(?: \+ '/' \+ picture)?;");
 
             //count if we found all the settings
             int found = 0;
@@ -436,6 +436,11 @@ namespace Plugin_SongPoster
             groupBoxDefaultImage.Enabled = sendCoverArt.Checked;
 
             spRef.SendCoverArt = sendCoverArt.Checked;
+        }
+
+        private void listBoxNetworks1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

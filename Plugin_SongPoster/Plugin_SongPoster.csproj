@@ -76,7 +76,7 @@
   <ItemGroup>
     <Reference Include="PluginInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Plugins\PluginInterface.dll</HintPath>
+      <HintPath>.\PluginInterface.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -91,7 +91,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>taglib-sharp.dll</HintPath>
+      <HintPath>.\taglib-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

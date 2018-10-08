@@ -213,3 +213,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/Plugin_SongPoster/PluginInterface.dll
+/Plugin_SongPoster/taglib-sharp.dll
